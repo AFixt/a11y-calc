@@ -1,0 +1,357 @@
+/* ===================================================
+   Accessible Calculator — macOS-style
+   All colors and sizes are exposed as CSS custom
+   properties for easy theming.
+   =================================================== */
+
+:root {
+  --calc-bg: #2a2a2a;
+  --calc-radius: 12px;
+  --calc-width: 320px;
+  --calc-width-scientific: 720px;
+
+  --display-bg: #1c1c1c;
+  --display-text: #ffffff;
+  --display-font-size: 3rem;
+  --display-expression-size: 0.875rem;
+
+  --btn-gap: 1px;
+  --btn-radius: 0;
+  --btn-size: 70px;
+  --btn-font-size: 1.5rem;
+  --btn-transition: 0.1s ease;
+
+  --btn-number-bg: #505050;
+  --btn-number-text: #ffffff;
+  --btn-number-hover: #6a6a6a;
+  --btn-number-active: #7a7a7a;
+
+  --btn-function-bg: #a5a5a5;
+  --btn-function-text: #000000;
+  --btn-function-hover: #b8b8b8;
+  --btn-function-active: #c8c8c8;
+
+  --btn-operator-bg: #f09a36;
+  --btn-operator-text: #ffffff;
+  --btn-operator-hover: #f5b04e;
+  --btn-operator-active: #f8c06a;
+  --btn-operator-pressed-bg: #ffffff;
+  --btn-operator-pressed-text: #f09a36;
+
+  --btn-scientific-bg: #3a3a3a;
+  --btn-scientific-text: #ffffff;
+  --btn-scientific-hover: #4a4a4a;
+  --btn-scientific-active: #5a5a5a;
+
+  --focus-ring-color: #58a6ff;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  --toolbar-bg: transparent;
+  --toolbar-text: rgba(255, 255, 255, 0.6);
+  --toolbar-hover: rgba(255, 255, 255, 0.15);
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Calculator container */
+.calculator {
+  width: var(--calc-width);
+  background: var(--calc-bg);
+  border-radius: var(--calc-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+}
+
+.calculator--scientific {
+  width: var(--calc-width-scientific);
+}
+
+/* Toolbar */
+.calc-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.375rem 0.5rem 0;
+  background: var(--display-bg);
+}
+
+.calc-mode-toggle {
+  background: var(--toolbar-bg);
+  color: var(--toolbar-text);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.calc-mode-toggle:hover {
+  background: var(--toolbar-hover);
+}
+
+.calc-mode-toggle:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* Display */
+.calc-display {
+  background: var(--display-bg);
+  padding: 0.25rem 1.25rem 0.5rem;
+  text-align: right;
+  min-height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.calc-display__info {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.calc-display__angle-mode {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.calc-display__parens {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: var(--display-expression-size);
+}
+
+.calc-display__expression {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--display-expression-size);
+}
+
+.calc-display__value {
+  display: block;
+  color: var(--display-text);
+  font-size: var(--display-font-size);
+  font-weight: 300;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Button grid */
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--btn-gap);
+  padding: var(--btn-gap);
+}
+
+.calc-buttons--scientific {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+/* Base button styles */
+.calc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: var(--btn-font-size);
+  font-family: inherit;
+  min-height: var(--btn-size);
+  min-width: 44px;
+  padding: 0;
+  border-radius: var(--btn-radius);
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Focus styles — always visible, never suppressed */
+.calc-btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: calc(-1 * var(--focus-ring-width));
+  z-index: 1;
+}
+
+/* Number buttons */
+.calc-btn--number {
+  background: var(--btn-number-bg);
+  color: var(--btn-number-text);
+}
+
+.calc-btn--number:hover {
+  background: var(--btn-number-hover);
+}
+
+.calc-btn--number:active {
+  background: var(--btn-number-active);
+}
+
+/* Function buttons (AC, +/-, %) */
+.calc-btn--function {
+  background: var(--btn-function-bg);
+  color: var(--btn-function-text);
+}
+
+.calc-btn--function:hover {
+  background: var(--btn-function-hover);
+}
+
+.calc-btn--function:active {
+  background: var(--btn-function-active);
+}
+
+/* Operator buttons */
+.calc-btn--operator {
+  background: var(--btn-operator-bg);
+  color: var(--btn-operator-text);
+}
+
+.calc-btn--operator:hover {
+  background: var(--btn-operator-hover);
+}
+
+.calc-btn--operator:active {
+  background: var(--btn-operator-active);
+}
+
+/* Active/pressed operator */
+.calc-btn--operator[aria-pressed='true'] {
+  background: var(--btn-operator-pressed-bg);
+  color: var(--btn-operator-pressed-text);
+}
+
+/* Scientific buttons */
+.calc-btn--scientific {
+  background: var(--btn-scientific-bg);
+  color: var(--btn-scientific-text);
+  font-size: calc(var(--btn-font-size) * 0.65);
+}
+
+.calc-btn--scientific:hover {
+  background: var(--btn-scientific-hover);
+}
+
+.calc-btn--scientific:active {
+  background: var(--btn-scientific-active);
+}
+
+/* 2nd function active state */
+.calc-btn--second-active {
+  background: var(--btn-scientific-text) !important;
+  color: var(--btn-scientific-bg) !important;
+}
+
+/* Spacer cells for scientific grid alignment */
+.calc-btn-spacer {
+  min-height: 0;
+  visibility: hidden;
+}
+
+/* Wide button (0) */
+.calc-btn--wide {
+  grid-column: span 2;
+  justify-content: center;
+}
+
+/* ===================================================
+   Accessibility: prefers-contrast
+   =================================================== */
+@media (prefers-contrast: more) {
+  :root {
+    --btn-number-bg: #3a3a3a;
+    --btn-number-text: #ffffff;
+    --btn-function-bg: #d0d0d0;
+    --btn-function-text: #000000;
+    --btn-operator-bg: #e07800;
+    --btn-operator-text: #ffffff;
+    --btn-scientific-bg: #2a2a2a;
+    --btn-scientific-text: #ffffff;
+    --focus-ring-color: #ffffff;
+    --focus-ring-width: 4px;
+  }
+
+  .calc-btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .calc-btn--function {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ===================================================
+   Accessibility: prefers-reduced-motion
+   =================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .calc-btn {
+    transition: background var(--btn-transition), color var(--btn-transition),
+      transform var(--btn-transition);
+  }
+
+  .calc-btn:active {
+    transform: scale(0.96);
+  }
+}
+
+/* ===================================================
+   Light color scheme
+   =================================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    --calc-bg: #d4d4d2;
+    --display-bg: #e8e8e6;
+    --display-text: #1a1a1a;
+    --btn-number-bg: #e0e0de;
+    --btn-number-text: #1a1a1a;
+    --btn-number-hover: #d0d0ce;
+    --btn-number-active: #c0c0be;
+    --btn-function-bg: #c8c8c6;
+    --btn-function-text: #1a1a1a;
+    --btn-function-hover: #b8b8b6;
+    --btn-function-active: #a8a8a6;
+    --btn-operator-pressed-bg: #1a1a1a;
+    --btn-operator-pressed-text: #f09a36;
+    --btn-scientific-bg: #d8d8d6;
+    --btn-scientific-text: #1a1a1a;
+    --btn-scientific-hover: #c8c8c6;
+    --btn-scientific-active: #b8b8b6;
+    --focus-ring-color: #0066cc;
+    --toolbar-text: rgba(26, 26, 26, 0.6);
+    --toolbar-hover: rgba(0, 0, 0, 0.08);
+  }
+
+  .calculator {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .calc-display__expression,
+  .calc-display__angle-mode,
+  .calc-display__parens {
+    color: rgba(26, 26, 26, 0.5);
+  }
+
+  .calc-mode-toggle {
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+}
