@@ -22,22 +22,18 @@ export function Display({ value, expression, mode, angleMode, parenDepth = 0 }: 
     <div className="calc-display">
       <div className="calc-display__info" aria-hidden="true">
         {showIndicators && (
-          <span className="calc-display__angle-mode">
-            {angleMode === 'deg' ? 'DEG' : 'RAD'}
-          </span>
+          <span className="calc-display__angle-mode">{angleMode === 'deg' ? 'DEG' : 'RAD'}</span>
         )}
         {showIndicators && parenDepth > 0 && (
-          <span className="calc-display__parens">
-            {'('.repeat(parenDepth)}
-          </span>
+          <span className="calc-display__parens">{'('.repeat(parenDepth)}</span>
         )}
-        {expression && (
-          <span className="calc-display__expression">
-            {expression}
-          </span>
-        )}
+        {expression && <span className="calc-display__expression">{expression}</span>}
       </div>
-      <output className="calc-display__value" aria-label={`Result: ${spokenValue}`} data-testid="display">
+      <output
+        className="calc-display__value"
+        aria-label={`Result: ${spokenValue}`}
+        data-testid="display"
+      >
         {value}
       </output>
     </div>

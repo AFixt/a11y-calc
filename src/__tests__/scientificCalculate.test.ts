@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { evaluateScientificFunction, scientificFunctionToWord } from '../utils/scientificCalculate';
 
 describe('evaluateScientificFunction', () => {
@@ -174,7 +174,7 @@ describe('evaluateScientificFunction', () => {
     });
 
     it('acosh(2) ≈ 1.3170', () => {
-      expect(evaluateScientificFunction(2, 'acosh', 'rad')).toBeCloseTo(1.3170, 3);
+      expect(evaluateScientificFunction(2, 'acosh', 'rad')).toBeCloseTo(1.317, 3);
     });
 
     it('acosh(0.5) returns NaN (domain error)', () => {

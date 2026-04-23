@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, within, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it } from 'vitest';
 import { Calculator } from '../components/Calculator/Calculator';
 
 function renderCalculator() {

@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react';
-import type { Operator, CalculatorState, ScientificFunction } from '../types/calculator';
+import type { CalculatorState, Operator, ScientificFunction } from '../types/calculator';
 import { calculate, formatDisplay, operatorToWord } from '../utils/calculate';
 import { evaluateScientificFunction, scientificFunctionToWord } from '../utils/scientificCalculate';
 
@@ -92,9 +92,7 @@ function reducer(state: CalculatorState, action: Action): CalculatorState {
           waitingForOperand: true,
           expression: display === 'Error' ? '' : `${display} ${operatorToWord(op)}`,
           announcement:
-            display === 'Error'
-              ? 'Error'
-              : `${speakNumber(display)}, ${operatorToWord(op)}`,
+            display === 'Error' ? 'Error' : `${speakNumber(display)}, ${operatorToWord(op)}`,
         };
       }
 
@@ -125,10 +123,7 @@ function reducer(state: CalculatorState, action: Action): CalculatorState {
         operator: null,
         waitingForOperand: true,
         expression: '',
-        announcement:
-          display === 'Error'
-            ? 'Error, cannot divide by zero'
-            : fullExpression,
+        announcement: display === 'Error' ? 'Error, cannot divide by zero' : fullExpression,
       };
     }
 
@@ -242,15 +237,12 @@ function reducer(state: CalculatorState, action: Action): CalculatorState {
       // First evaluate any pending operation inside the parens
       let resultValue = parseFloat(state.displayValue);
       if (state.operator !== null && state.previousValue !== null) {
-        resultValue = calculate(
-          parseFloat(state.previousValue),
-          resultValue,
-          state.operator,
-        );
+        resultValue = calculate(parseFloat(state.previousValue), resultValue, state.operator);
       }
       const display = formatDisplay(resultValue);
 
       const frame = state.parenStack[state.parenStack.length - 1];
+      if (!frame) return state;
       return {
         ...state,
         displayValue: display,

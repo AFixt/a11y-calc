@@ -1,8 +1,8 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
-import { resolve } from 'path'
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,7 +11,13 @@ export default defineConfig({
     dts({
       tsconfigPath: './tsconfig.app.json',
       include: ['src'],
-      exclude: ['src/**/*.test.*', 'src/__tests__/**', 'src/main.tsx', 'src/App.tsx', 'src/test-setup.ts'],
+      exclude: [
+        'src/**/*.test.*',
+        'src/__tests__/**',
+        'src/main.tsx',
+        'src/App.tsx',
+        'src/test-setup.ts',
+      ],
     }),
   ],
   build: {
@@ -24,7 +30,7 @@ export default defineConfig({
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
-          react: 'React',
+          'react': 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
         },
@@ -43,7 +49,14 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/**/*.css', 'src/main.tsx', 'src/test-setup.ts', 'src/**/*.test.*', 'src/__tests__/**', 'src/index.ts'],
+      exclude: [
+        'src/**/*.css',
+        'src/main.tsx',
+        'src/test-setup.ts',
+        'src/**/*.test.*',
+        'src/__tests__/**',
+        'src/index.ts',
+      ],
     },
   },
-})
+});

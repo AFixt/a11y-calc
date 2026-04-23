@@ -80,27 +80,49 @@ export function evaluateScientificFunction(
 
 export function scientificFunctionToWord(fn: ScientificFunction): string {
   switch (fn) {
-    case 'sin': return 'sine of';
-    case 'cos': return 'cosine of';
-    case 'tan': return 'tangent of';
-    case 'asin': return 'arc sine of';
-    case 'acos': return 'arc cosine of';
-    case 'atan': return 'arc tangent of';
-    case 'sinh': return 'hyperbolic sine of';
-    case 'cosh': return 'hyperbolic cosine of';
-    case 'tanh': return 'hyperbolic tangent of';
-    case 'asinh': return 'inverse hyperbolic sine of';
-    case 'acosh': return 'inverse hyperbolic cosine of';
-    case 'atanh': return 'inverse hyperbolic tangent of';
-    case 'ln': return 'natural log of';
-    case 'log10': return 'log base 10 of';
-    case 'square': return 'square of';
-    case 'cube': return 'cube of';
-    case 'exp': return 'e to the power of';
-    case 'tenPow': return '10 to the power of';
-    case 'reciprocal': return '1 over';
-    case 'sqrt': return 'square root of';
-    case 'cbrt': return 'cube root of';
-    case 'factorial': return 'factorial of';
+    case 'sin':
+      return 'sine of';
+    case 'cos':
+      return 'cosine of';
+    case 'tan':
+      return 'tangent of';
+    case 'asin':
+      return 'arc sine of';
+    case 'acos':
+      return 'arc cosine of';
+    case 'atan':
+      return 'arc tangent of';
+    case 'sinh':
+      return 'hyperbolic sine of';
+    case 'cosh':
+      return 'hyperbolic cosine of';
+    case 'tanh':
+      return 'hyperbolic tangent of';
+    case 'asinh':
+      return 'inverse hyperbolic sine of';
+    case 'acosh':
+      return 'inverse hyperbolic cosine of';
+    case 'atanh':
+      return 'inverse hyperbolic tangent of';
+    case 'ln':
+      return 'natural log of';
+    case 'log10':
+      return 'log base 10 of';
+    case 'square':
+      return 'square of';
+    case 'cube':
+      return 'cube of';
+    case 'exp':
+      return 'e to the power of';
+    case 'tenPow':
+      return '10 to the power of';
+    case 'reciprocal':
+      return '1 over';
+    case 'sqrt':
+      return 'square root of';
+    case 'cbrt':
+      return 'cube root of';
+    case 'factorial':
+      return 'factorial of';
   }
 }
