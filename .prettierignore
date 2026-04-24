@@ -50,3 +50,5 @@ playwright-report/
 # Generated reports
 reports/
 .codeql-db/
+dist-demo/
+.lighthouseci/

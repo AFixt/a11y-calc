@@ -30,6 +30,8 @@ reports/
 .codeql-db/
 .stylelintcache
 .eslintcache
+dist-demo/
+.lighthouseci/
 
 CLAUDE.md
 .claude/

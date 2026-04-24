@@ -1,0 +1,20 @@
+[
+  {
+    "name": "ESM bundle (gzip)",
+    "path": "dist/index.mjs",
+    "limit": "6 KB",
+    "import": "{ Calculator }",
+    "ignore": ["react", "react-dom", "react/jsx-runtime"]
+  },
+  {
+    "name": "CJS bundle (gzip)",
+    "path": "dist/index.cjs",
+    "limit": "6 KB",
+    "ignore": ["react", "react-dom", "react/jsx-runtime"]
+  },
+  {
+    "name": "CSS",
+    "path": "dist/style.css",
+    "limit": "2 KB"
+  }
+]
