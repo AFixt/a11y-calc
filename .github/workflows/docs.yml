@@ -1,0 +1,34 @@
+name: Docs (scheduled link check)
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Monday 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write # lychee can file a tracking issue on broken links
+
+jobs:
+  links:
+    name: lychee online
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-retries 1 --timeout 15 "README.md" "docs/**/*.md"
+          fail: true
+          format: markdown
+          output: /tmp/lychee-report.md
+
+      - name: Open or update broken-link issue
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Link Checker Report"
+          content-filepath: /tmp/lychee-report.md
+          labels: docs, automated
