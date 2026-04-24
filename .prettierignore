@@ -46,3 +46,7 @@ LICENSE
 # Test artifacts
 test-results/
 playwright-report/
+
+# Generated reports
+reports/
+.codeql-db/
