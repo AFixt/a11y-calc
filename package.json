@@ -69,7 +69,7 @@
     "security:osv": "osv-scanner --lockfile=package-lock.json",
     "security:semgrep": "semgrep --config=p/javascript --config=p/typescript --config=p/react --config=p/owasp-top-ten --config=p/security-audit --config=p/secrets --error --metrics=off",
     "security:secrets": "gitleaks detect --no-banner --redact",
-    "security:codeql": "mkdir -p reports && codeql database create ./.codeql-db --language=javascript --source-root=. --overwrite && codeql database analyze ./.codeql-db codeql/javascript-queries:codeql-suites/javascript-security-extended.qls --format=sarif-latest --output=reports/codeql.sarif",
+    "security:codeql": "mkdir -p reports && codeql pack download codeql/javascript-queries && codeql database create ./.codeql-db --language=javascript --source-root=. --overwrite && codeql database analyze ./.codeql-db codeql/javascript-queries:codeql-suites/javascript-security-extended.qls --format=sarif-latest --output=reports/codeql.sarif",
     "security:depcheck": "mkdir -p reports/dep-check && dependency-check --project \"$(node -p 'require(\"./package.json\").name')\" --scan . --format HTML --out reports/dep-check --suppression .dependency-check-suppressions.xml --exclude 'node_modules/**' --exclude 'dist/**' --exclude 'coverage/**'",
     "security": "run-p security:audit security:osv security:semgrep security:secrets",
     "license:check": "license-checker-rseidelsohn --production --onlyAllow 'MIT;ISC;Apache-2.0;BSD-2-Clause;BSD-3-Clause;0BSD;CC0-1.0;Unlicense;Python-2.0;WTFPL;BlueOak-1.0.0' --excludePrivatePackages --summary",

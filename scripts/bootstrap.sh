@@ -107,10 +107,7 @@ esac
 if ! need codeql; then
   case "$OS" in
     macos)
-      # codeql cli is not in core Homebrew; point at the official bundle
-      warn "codeql CLI not installed."
-      warn "Install: https://github.com/github/codeql-cli-binaries/releases"
-      warn "Unpack and ensure the directory is on your PATH."
+      brew_install_if_missing codeql codeql  # homebrew cask
       ;;
     *)
       install_linux_hint codeql "https://github.com/github/codeql-cli-binaries/releases"
@@ -118,6 +115,12 @@ if ! need codeql; then
   esac
 else
   ok "codeql already installed"
+fi
+
+# CodeQL query packs (needed by security:codeql)
+if need codeql; then
+  log "codeql pack download codeql/javascript-queries"
+  codeql pack download codeql/javascript-queries || warn "codeql pack download failed; re-run manually"
 fi
 
 # --- OWASP Dependency-Check ---
