@@ -1,0 +1,31 @@
+# Architecture Decision Records
+
+This directory holds ADRs — short, numbered markdown files that record
+non-obvious engineering decisions and the reasoning behind them.
+
+## When to write an ADR
+
+Write one when you:
+
+- Choose between two or more tools, patterns, or architectures.
+- Decline to adopt something an issue, RFC, or external guideline prescribed —
+  the ground-rule exception needs written justification.
+- Replace or remove something a future reader might wonder about ("Why isn't X
+  in here anymore?").
+- Take on a constraint that will outlive the current task (e.g., a naming
+  convention, a deprecation plan, a compatibility floor).
+
+Routine refactors, bug fixes, and small implementation choices do not need ADRs.
+When in doubt, write one — they are cheap.
+
+## Format
+
+Use [`../templates/adr-template.md`](../templates/adr-template.md) and number
+sequentially starting at `0001`.
+
+## Index
+
+- [ADR 0001 — Keep split tsconfig and vite-plugin-dts for the library build](./0001-keep-split-tsconfig-and-vite-plugin-dts.md)
+- [ADR 0002 — Adopt the standardized tooling stack in phases](./0002-phased-tooling-adoption.md)
+- [ADR 0003 — Run CodeQL, OWASP Dependency-Check, and OWASP ZAP locally, not only in scheduled Actions](./0003-heavy-scanner-placement.md)
+- [ADR 0004 — Allow BEM class selectors and disable `a11y/selector-pseudo-class-focus`](./0004-stylelint-bem-and-pseudo-class-focus.md)

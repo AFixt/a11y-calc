@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 test.describe('Calculator E2E', () => {
   test.beforeEach(async ({ page }) => {
@@ -277,25 +277,46 @@ test.describe('Calculator E2E', () => {
     test('operator gets aria-pressed=true when active', async ({ page }) => {
       await page.getByRole('button', { name: '5', exact: true }).click();
       await page.getByRole('button', { name: 'Add' }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'true');
-      await expect(page.getByRole('button', { name: 'Subtract' })).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      await expect(page.getByRole('button', { name: 'Subtract' })).toHaveAttribute(
+        'aria-pressed',
+        'false',
+      );
     });
 
     test('aria-pressed clears when digit entered', async ({ page }) => {
       await page.getByRole('button', { name: '5', exact: true }).click();
       await page.getByRole('button', { name: 'Add' }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
       await page.getByRole('button', { name: '3', exact: true }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'false',
+      );
     });
 
     test('aria-pressed switches when changing operator', async ({ page }) => {
       await page.getByRole('button', { name: '5', exact: true }).click();
       await page.getByRole('button', { name: 'Add' }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
       await page.getByRole('button', { name: 'Multiply' }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'false');
-      await expect(page.getByRole('button', { name: 'Multiply' })).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'false',
+      );
+      await expect(page.getByRole('button', { name: 'Multiply' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
     });
 
     test('aria-pressed clears after equals', async ({ page }) => {
@@ -303,7 +324,10 @@ test.describe('Calculator E2E', () => {
       await page.getByRole('button', { name: 'Add' }).click();
       await page.getByRole('button', { name: '3', exact: true }).click();
       await page.getByRole('button', { name: 'Equals' }).click();
-      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.getByRole('button', { name: 'Add' })).toHaveAttribute(
+        'aria-pressed',
+        'false',
+      );
     });
   });
 
@@ -514,9 +538,13 @@ test.describe('Calculator E2E', () => {
     test('Rad/Deg toggle: starts as RAD, switches to DEG', async ({ page }) => {
       await activateScientific(page);
       // Default is radians — button says "Currently radians, switch to degrees"
-      await expect(page.getByRole('button', { name: 'Currently radians, switch to degrees' })).toBeVisible();
+      await expect(
+        page.getByRole('button', { name: 'Currently radians, switch to degrees' }),
+      ).toBeVisible();
       await page.getByRole('button', { name: 'Currently radians, switch to degrees' }).click();
-      await expect(page.getByRole('button', { name: 'Currently degrees, switch to radians' })).toBeVisible();
+      await expect(
+        page.getByRole('button', { name: 'Currently degrees, switch to radians' }),
+      ).toBeVisible();
     });
 
     test('Rad/Deg toggle: DEG indicator appears in display', async ({ page }) => {
@@ -619,12 +647,23 @@ test.describe('Calculator E2E', () => {
     test('scientific buttons have type="button"', async ({ page }) => {
       await activateScientific(page);
       const scientificBtns = [
-        'Sine', 'Cosine', 'Tangent', 'Square root', 'Factorial',
-        'Natural log', 'Pi', "Euler's number e", 'Reciprocal',
-        'Open parenthesis', 'Close parenthesis',
+        'Sine',
+        'Cosine',
+        'Tangent',
+        'Square root',
+        'Factorial',
+        'Natural log',
+        'Pi',
+        "Euler's number e",
+        'Reciprocal',
+        'Open parenthesis',
+        'Close parenthesis',
       ];
       for (const name of scientificBtns) {
-        await expect(page.getByRole('button', { name, exact: true })).toHaveAttribute('type', 'button');
+        await expect(page.getByRole('button', { name, exact: true })).toHaveAttribute(
+          'type',
+          'button',
+        );
       }
     });
 

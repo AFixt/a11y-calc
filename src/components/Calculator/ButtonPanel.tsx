@@ -1,4 +1,9 @@
-import type { Operator, CalculatorMode, AngleMode, ScientificFunction } from '../../types/calculator';
+import type {
+  AngleMode,
+  CalculatorMode,
+  Operator,
+  ScientificFunction,
+} from '../../types/calculator';
 import { CalcButton } from './CalcButton';
 
 interface ButtonPanelProps {
@@ -46,17 +51,25 @@ export function ButtonPanel({
   const isPressed = (op: Operator) => activeOperator === op && waitingForOperand;
   const isScientific = mode === 'scientific';
 
-  const gridClass = isScientific
-    ? 'calc-buttons calc-buttons--scientific'
-    : 'calc-buttons';
+  const gridClass = isScientific ? 'calc-buttons calc-buttons--scientific' : 'calc-buttons';
 
   return (
     <div className={gridClass} role="group" aria-label="Calculator buttons">
       {isScientific && (
         <>
           {/* Scientific Row 1 */}
-          <CalcButton label="(" ariaLabel="Open parenthesis" variant="scientific" onClick={onOpenParen} />
-          <CalcButton label=")" ariaLabel="Close parenthesis" variant="scientific" onClick={onCloseParen} />
+          <CalcButton
+            label="("
+            ariaLabel="Open parenthesis"
+            variant="scientific"
+            onClick={onOpenParen}
+          />
+          <CalcButton
+            label=")"
+            ariaLabel="Close parenthesis"
+            variant="scientific"
+            onClick={onCloseParen}
+          />
           <CalcButton
             label={isSecondFunction ? 'x³' : 'x²'}
             ariaLabel={isSecondFunction ? 'x cubed' : 'x squared'}
@@ -77,7 +90,9 @@ export function ButtonPanel({
           />
           <CalcButton
             label="2nd"
-            ariaLabel={isSecondFunction ? 'Second function active, click for primary' : 'Second function'}
+            ariaLabel={
+              isSecondFunction ? 'Second function active, click for primary' : 'Second function'
+            }
             variant="scientific"
             className={isSecondFunction ? 'calc-btn--second-active' : ''}
             onClick={onToggleSecondFunction}
@@ -87,29 +102,60 @@ export function ButtonPanel({
 
       {/* Standard Row 1: AC, +/-, %, ÷ */}
       <CalcButton label="AC" ariaLabel="All clear" variant="function" onClick={onClear} />
-      <CalcButton label="+/−" ariaLabel="Toggle positive negative" variant="function" onClick={onToggleSign} />
+      <CalcButton
+        label="+/−"
+        ariaLabel="Toggle positive negative"
+        variant="function"
+        onClick={onToggleSign}
+      />
       <CalcButton label="%" ariaLabel="Percent" variant="function" onClick={onPercent} />
-      <CalcButton label="÷" ariaLabel="Divide" variant="operator" pressed={isPressed('/')} onClick={() => onOperator('/')} />
+      <CalcButton
+        label="÷"
+        ariaLabel="Divide"
+        variant="operator"
+        pressed={isPressed('/')}
+        onClick={() => onOperator('/')}
+      />
 
       {isScientific && (
         <>
           {/* Scientific Row 2 */}
-          <CalcButton label="1/x" ariaLabel="Reciprocal" variant="scientific" onClick={() => onScientificFunction('reciprocal')} />
+          <CalcButton
+            label="1/x"
+            ariaLabel="Reciprocal"
+            variant="scientific"
+            onClick={() => onScientificFunction('reciprocal')}
+          />
           <CalcButton
             label={isSecondFunction ? '∛x' : '√x'}
             ariaLabel={isSecondFunction ? 'Cube root' : 'Square root'}
             variant="scientific"
             onClick={() => onScientificFunction(isSecondFunction ? 'cbrt' : 'sqrt')}
           />
-          <CalcButton label="x!" ariaLabel="Factorial" variant="scientific" onClick={() => onScientificFunction('factorial')} />
+          <CalcButton
+            label="x!"
+            ariaLabel="Factorial"
+            variant="scientific"
+            onClick={() => onScientificFunction('factorial')}
+          />
           <CalcButton
             label={isSecondFunction ? 'log₁₀' : 'ln'}
             ariaLabel={isSecondFunction ? 'Log base 10' : 'Natural log'}
             variant="scientific"
             onClick={() => onScientificFunction(isSecondFunction ? 'log10' : 'ln')}
           />
-          <CalcButton label="e" ariaLabel="Euler's number e" variant="scientific" onClick={() => onConstant('e')} />
-          <CalcButton label="π" ariaLabel="Pi" variant="scientific" onClick={() => onConstant('pi')} />
+          <CalcButton
+            label="e"
+            ariaLabel="Euler's number e"
+            variant="scientific"
+            onClick={() => onConstant('e')}
+          />
+          <CalcButton
+            label="π"
+            ariaLabel="Pi"
+            variant="scientific"
+            onClick={() => onConstant('pi')}
+          />
         </>
       )}
 
@@ -117,7 +163,13 @@ export function ButtonPanel({
       <CalcButton label="7" ariaLabel="7" onClick={() => onDigit('7')} />
       <CalcButton label="8" ariaLabel="8" onClick={() => onDigit('8')} />
       <CalcButton label="9" ariaLabel="9" onClick={() => onDigit('9')} />
-      <CalcButton label="×" ariaLabel="Multiply" variant="operator" pressed={isPressed('*')} onClick={() => onOperator('*')} />
+      <CalcButton
+        label="×"
+        ariaLabel="Multiply"
+        variant="operator"
+        pressed={isPressed('*')}
+        onClick={() => onOperator('*')}
+      />
 
       {isScientific && (
         <>
@@ -165,14 +217,24 @@ export function ButtonPanel({
       <CalcButton label="4" ariaLabel="4" onClick={() => onDigit('4')} />
       <CalcButton label="5" ariaLabel="5" onClick={() => onDigit('5')} />
       <CalcButton label="6" ariaLabel="6" onClick={() => onDigit('6')} />
-      <CalcButton label="−" ariaLabel="Subtract" variant="operator" pressed={isPressed('-')} onClick={() => onOperator('-')} />
+      <CalcButton
+        label="−"
+        ariaLabel="Subtract"
+        variant="operator"
+        pressed={isPressed('-')}
+        onClick={() => onOperator('-')}
+      />
 
       {isScientific && (
         <>
           {/* Scientific Row 4 */}
           <CalcButton
             label={angleMode === 'rad' ? 'Rad' : 'Deg'}
-            ariaLabel={angleMode === 'rad' ? 'Currently radians, switch to degrees' : 'Currently degrees, switch to radians'}
+            ariaLabel={
+              angleMode === 'rad'
+                ? 'Currently radians, switch to degrees'
+                : 'Currently degrees, switch to radians'
+            }
             variant="scientific"
             onClick={onToggleAngleMode}
           />
@@ -189,7 +251,13 @@ export function ButtonPanel({
       <CalcButton label="1" ariaLabel="1" onClick={() => onDigit('1')} />
       <CalcButton label="2" ariaLabel="2" onClick={() => onDigit('2')} />
       <CalcButton label="3" ariaLabel="3" onClick={() => onDigit('3')} />
-      <CalcButton label="+" ariaLabel="Add" variant="operator" pressed={isPressed('+')} onClick={() => onOperator('+')} />
+      <CalcButton
+        label="+"
+        ariaLabel="Add"
+        variant="operator"
+        pressed={isPressed('+')}
+        onClick={() => onOperator('+')}
+      />
 
       {isScientific && (
         <>

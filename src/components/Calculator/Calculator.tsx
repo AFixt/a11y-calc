@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import type { Operator, CalculatorMode, CalculatorTheme } from '../../types/calculator';
 import { useCalculator } from '../../hooks/useCalculator';
-import { Display } from './Display';
+import type { CalculatorMode, CalculatorTheme, Operator } from '../../types/calculator';
 import { ButtonPanel } from './ButtonPanel';
 import './Calculator.css';
+import { Display } from './Display';
 
 const KEY_TO_OPERATOR: Record<string, Operator> = {
   '+': '+',
@@ -57,6 +57,7 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       const { key } = e;
+      const mappedOperator = KEY_TO_OPERATOR[key];
 
       if (key >= '0' && key <= '9') {
         e.preventDefault();
@@ -64,9 +65,9 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
       } else if (key === '.') {
         e.preventDefault();
         inputDecimal();
-      } else if (key in KEY_TO_OPERATOR) {
+      } else if (mappedOperator !== undefined) {
         e.preventDefault();
-        inputOperator(KEY_TO_OPERATOR[key]);
+        inputOperator(mappedOperator);
       } else if (key === 'Enter' || key === '=') {
         e.preventDefault();
         performCalculation();
@@ -87,7 +88,18 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
         closeParen();
       }
     },
-    [inputDigit, inputDecimal, inputOperator, performCalculation, clearAll, backspace, inputPercent, openParen, closeParen, mode],
+    [
+      inputDigit,
+      inputDecimal,
+      inputOperator,
+      performCalculation,
+      clearAll,
+      backspace,
+      inputPercent,
+      openParen,
+      closeParen,
+      mode,
+    ],
   );
 
   const themeStyle = theme
@@ -96,9 +108,7 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
       ) as React.CSSProperties)
     : undefined;
 
-  const containerClass = mode === 'scientific'
-    ? 'calculator calculator--scientific'
-    : 'calculator';
+  const containerClass = mode === 'scientific' ? 'calculator calculator--scientific' : 'calculator';
 
   return (
     <div

@@ -17,12 +17,7 @@ export function CalcButton({
   className = '',
   ...rest
 }: CalcButtonProps) {
-  const classes = [
-    'calc-btn',
-    `calc-btn--${variant}`,
-    wide ? 'calc-btn--wide' : '',
-    className,
-  ]
+  const classes = ['calc-btn', `calc-btn--${variant}`, wide ? 'calc-btn--wide' : '', className]
     .filter(Boolean)
     .join(' ');
 

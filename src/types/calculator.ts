@@ -1,15 +1,27 @@
 export type Operator = '+' | '-' | '*' | '/' | '^';
 
 export type ScientificFunction =
-  | 'sin' | 'cos' | 'tan'
-  | 'asin' | 'acos' | 'atan'
-  | 'sinh' | 'cosh' | 'tanh'
-  | 'asinh' | 'acosh' | 'atanh'
-  | 'ln' | 'log10'
-  | 'square' | 'cube'
-  | 'exp' | 'tenPow'
+  | 'sin'
+  | 'cos'
+  | 'tan'
+  | 'asin'
+  | 'acos'
+  | 'atan'
+  | 'sinh'
+  | 'cosh'
+  | 'tanh'
+  | 'asinh'
+  | 'acosh'
+  | 'atanh'
+  | 'ln'
+  | 'log10'
+  | 'square'
+  | 'cube'
+  | 'exp'
+  | 'tenPow'
   | 'reciprocal'
-  | 'sqrt' | 'cbrt'
+  | 'sqrt'
+  | 'cbrt'
   | 'factorial';
 
 export type AngleMode = 'deg' | 'rad';
