@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/assert-bin.sh"
+
+assert_bin gitleaks "brew install gitleaks"
+
+# lint-staged runs eslint + prettier + stylelint + markdownlint on staged files only
+npx lint-staged
+
+# Type-check only files that actually changed, against the full program
+npx tsc-files --noEmit
+
+# Secrets scan on the staged diff
+gitleaks protect --staged --no-banner --redact
