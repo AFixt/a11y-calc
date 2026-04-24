@@ -45,6 +45,15 @@ We run it instead as `security:semgrep` in `check:all` on pre-push. Rationale:
 - Developers will commit small changes frequently; making pre-commit fast keeps
   the loop tight. Pre-push is the right granularity for heavier scanners.
 
+### Link checking uses `--offline` on pre-push
+
+`npm run links` passes `--offline` to lychee so it only resolves relative file
+paths (catches `[foo](./does-not-exist.md)` typos) and never hits the network.
+Pre-push stays deterministic and fast (<1s). External link rot is covered by a
+separate `npm run links:online` script — wired into the scheduled `docs.yml`
+workflow in Phase 4 — which runs with `--max-retries 1 --timeout 15` so even
+that can't stall.
+
 ### CodeQL, Dependency-Check, and ZAP per ADR 0003
 
 CodeQL and OWASP Dependency-Check are part of `check:all` on pre-push. OWASP ZAP
