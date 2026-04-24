@@ -1,5 +1,14 @@
+/**
+ * Binary arithmetic operator accepted by the calculator. `^` is the
+ * power operator (available in scientific mode).
+ */
 export type Operator = '+' | '-' | '*' | '/' | '^';
 
+/**
+ * Unary scientific function identifier. Covers trig, inverse trig,
+ * hyperbolic, inverse hyperbolic, logarithms, powers, roots, reciprocal,
+ * and factorial.
+ */
 export type ScientificFunction =
   | 'sin'
   | 'cos'
@@ -24,10 +33,23 @@ export type ScientificFunction =
   | 'cbrt'
   | 'factorial';
 
+/**
+ * Angle unit mode for trig functions. `'deg'` interprets inputs as degrees
+ * and produces inverse-trig results in degrees; `'rad'` does the same with
+ * radians.
+ */
 export type AngleMode = 'deg' | 'rad';
 
+/**
+ * Which button layout the calculator renders. `'scientific'` shows the
+ * 10-column extended grid; `'basic'` shows the standard 4-column layout.
+ */
 export type CalculatorMode = 'basic' | 'scientific';
 
+/**
+ * Snapshot of the arithmetic context captured when a parenthesis opens.
+ * Restored when the matching parenthesis closes.
+ */
 export interface ParenFrame {
   previousValue: string | null;
   operator: Operator | null;
@@ -35,6 +57,11 @@ export interface ParenFrame {
   expression: string;
 }
 
+/**
+ * Full calculator state. Every user interaction produces a new snapshot
+ * by returning a replacement object from the reducer — the shape never
+ * changes in place.
+ */
 export interface CalculatorState {
   displayValue: string;
   previousValue: string | null;
@@ -48,6 +75,11 @@ export interface CalculatorState {
   parenStack: ParenFrame[];
 }
 
+/**
+ * Consumer-supplied theme overrides. Each key maps to a CSS custom property
+ * on the calculator root; omitted keys fall through to the defaults defined
+ * in `Calculator.css`.
+ */
 export interface CalculatorTheme {
   'calc-bg'?: string;
   'calc-radius'?: string;

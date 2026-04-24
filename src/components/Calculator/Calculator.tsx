@@ -1,9 +1,19 @@
-import { useCallback, useState } from 'react';
+import {
+  useCallback,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type ReactElement,
+} from 'react';
+
 import { useCalculator } from '../../hooks/useCalculator';
-import type { CalculatorMode, CalculatorTheme, Operator } from '../../types/calculator';
+
 import { ButtonPanel } from './ButtonPanel';
-import './Calculator.css';
 import { Display } from './Display';
+
+import type { CalculatorMode, CalculatorTheme, Operator } from '../../types/calculator';
+
+import './Calculator.css';
 
 const KEY_TO_OPERATOR: Record<string, Operator> = {
   '+': '+',
@@ -13,12 +23,22 @@ const KEY_TO_OPERATOR: Record<string, Operator> = {
   '^': '^',
 };
 
-interface CalculatorProps {
+/**
+ * Public props for {@link Calculator}.
+ */
+export interface CalculatorProps {
+  /** Optional CSS custom property overrides applied as inline style on the root. */
   theme?: CalculatorTheme;
+  /** Which button layout to start in. Defaults to `'basic'`. */
   initialMode?: CalculatorMode;
 }
 
-export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
+/**
+ * Accessible calculator component with basic and scientific modes.
+ * Owns its own keyboard handler, live region, and mode/2nd-function toggles,
+ * and wraps the `useCalculator` hook for arithmetic state.
+ */
+export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps): ReactElement {
   const {
     displayValue,
     operator,
@@ -55,7 +75,7 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
   }, []);
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: KeyboardEvent) => {
       const { key } = e;
       const mappedOperator = KEY_TO_OPERATOR[key];
 
@@ -102,15 +122,19 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps) {
     ],
   );
 
-  const themeStyle = theme
+  const themeStyle: CSSProperties | undefined = theme
     ? (Object.fromEntries(
         Object.entries(theme).map(([key, value]) => [`--${key}`, value]),
-      ) as React.CSSProperties)
+      ) as CSSProperties)
     : undefined;
 
   const containerClass = mode === 'scientific' ? 'calculator calculator--scientific' : 'calculator';
 
   return (
+    // role="application" is the correct semantic for a calculator widget that
+    // owns its own keyboard model. The jsx-a11y heuristic does not understand
+    // this pattern, so the rule is disabled on this element.
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div
       className={containerClass}
       style={themeStyle}
