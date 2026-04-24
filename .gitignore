@@ -32,3 +32,4 @@ reports/
 .eslintcache
 
 CLAUDE.md
+.claude/
