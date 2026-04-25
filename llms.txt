@@ -1,0 +1,53 @@
+# a11y-calc
+
+> Accessible React calculator component (basic + scientific modes), styled
+> after the macOS built-in calculator. Published as `@afixt/a11y-calc`.
+
+This package ships a single React component, `<Calculator>`, designed to
+meet WCAG 2.2 AA at the component level. Consumers import it, supply an
+optional theme prop, and choose `'basic'` or `'scientific'` mode.
+
+The repository is also a working example of a React library with a strict,
+defense-in-depth tooling stack:
+
+- TypeScript strict mode + `@total-typescript/ts-reset`
+- ESLint with `strict-type-checked`, `jsx-a11y`, `sonarjs`, `security`,
+  `unicorn`, `import-x`, `promise`, `n`, `jsdoc`, `no-secrets`
+- Stylelint, markdownlint, Prettier
+- Husky pre-commit + pre-push gates: lint-staged, gitleaks, jscpd,
+  lychee, license-checker, semgrep, osv-scanner, CodeQL,
+  OWASP Dependency-Check
+- size-limit budgets on the published bundles
+- Lighthouse CI on every PR (perf / SEO / best-practices ≥ 0.9)
+- `@afixt/a11y-assert` at component, E2E, and CI-preview layers
+
+## Public surface
+
+- `Calculator` — the React component
+- Types: `CalculatorMode`, `CalculatorTheme`, `AngleMode`, `Operator`,
+  `ScientificFunction`
+
+## Key files
+
+- [README.md](README.md) — install, usage, theming, accessibility notes
+- [src/index.ts](src/index.ts) — public exports
+- [src/components/Calculator/Calculator.tsx](src/components/Calculator/Calculator.tsx) — main component
+- [src/hooks/useCalculator.ts](src/hooks/useCalculator.ts) — state machine
+- [docs/adr/](docs/adr/) — every non-obvious tooling decision
+- [scripts/bootstrap.sh](scripts/bootstrap.sh) — install all external scanners
+
+## Architecture decisions
+
+- [ADR 0001 — Keep split tsconfig and vite-plugin-dts for the library build](docs/adr/0001-keep-split-tsconfig-and-vite-plugin-dts.md)
+- [ADR 0002 — Adopt the standardized tooling stack in phases](docs/adr/0002-phased-tooling-adoption.md)
+- [ADR 0003 — Run heavy security scanners locally, not only scheduled](docs/adr/0003-heavy-scanner-placement.md)
+- [ADR 0004 — Stylelint BEM allowance](docs/adr/0004-stylelint-bem-and-pseudo-class-focus.md)
+- [ADR 0005 — ESLint expansion calibrations](docs/adr/0005-eslint-expansion-calibrations.md)
+- [ADR 0006 — Husky hook composition](docs/adr/0006-husky-and-local-gates.md)
+- [ADR 0007 — GitHub Actions safety net and Dependabot](docs/adr/0007-github-actions-and-dependabot.md)
+- [ADR 0008 — Performance budgets and web-vitals placement](docs/adr/0008-performance-budgets.md)
+- [ADR 0009 — Accessibility layering and Phase 6 docs](docs/adr/0009-a11y-layering-and-docs.md)
+
+## License
+
+MIT — see [LICENSE](LICENSE).

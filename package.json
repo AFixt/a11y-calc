@@ -65,6 +65,7 @@
     "test:zap": "echo 'Run: zap-baseline.py -t http://localhost:4173 after starting npm run preview'; exit 1",
     "size": "size-limit",
     "lhci": "lhci autorun",
+    "ai:context": "node scripts/ai-context.js",
     "dupes": "jscpd",
     "links": "lychee --no-progress --offline 'README.md' 'docs/**/*.md'",
     "links:online": "lychee --no-progress --max-retries 1 --timeout 15 'README.md' 'docs/**/*.md'",
@@ -89,6 +90,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@afixt/a11y-assert": "2.1.1",
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
     "@double-great/stylelint-a11y": "3.4.10",
