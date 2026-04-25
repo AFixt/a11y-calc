@@ -101,6 +101,19 @@ automatically.
 
 ## Accessibility
 
+### Conformance
+
+The `<Calculator>` component targets **WCAG 2.2 AA**. Accessibility is verified
+at four layers:
+
+1. `eslint-plugin-jsx-a11y` at lint time
+2. `@afixt/a11y-assert` via Vitest against the rendered component
+3. `@afixt/a11y-assert` via Playwright against the running demo
+4. A dedicated `accessibility` GitHub Actions workflow on every PR
+
+See [ADR 0009](docs/adr/0009-a11y-layering-and-docs.md) for the layering
+rationale. Known limitations are tracked as issues labeled `a11y`.
+
 ### Semantic HTML
 
 - All buttons are native `<button type="button">` elements
@@ -170,17 +183,62 @@ automatically.
 
 ## Development
 
+### First-time setup
+
 ```bash
-npm install            # Install dependencies
-npm run dev            # Start demo dev server
+git clone https://github.com/AFixt/a11y-calc.git
+cd a11y-calc
+bash scripts/bootstrap.sh    # installs every external scanner used by the hooks
+npm ci
+```
+
+The bootstrap script installs `gitleaks`, `lychee`, `semgrep`, `osv-scanner`,
+`codeql`, `dependency-check`, and `zap` via Homebrew on macOS (with Linux/WSL
+release-binary hints for the rest). First run of `dependency-check` seeds the
+NVD mirror (~1 GB, 20–40 min — faster with an NVD API key).
+
+### Scripts
+
+```bash
+npm run dev            # Start demo dev server (vite)
 npm run build          # Type-check and build library (dist/)
-npm run build:demo     # Build the demo app
+npm run build:demo     # Build the demo app (dist-demo/)
+npm run preview        # Serve the built demo
 npm run lint           # ESLint
+npm run typecheck      # tsc --noEmit across all project references
 npm test               # Unit tests (vitest)
 npm run test:watch     # Tests in watch mode
 npm run test:coverage  # Tests with coverage report
 npm run test:e2e       # Build demo + run Playwright E2E tests
+npm run size           # size-limit budgets
+npm run lhci           # Lighthouse CI against the demo
+npm run ai:context     # Print project summary (for AI sessions / new contribs)
 ```
+
+### Gates
+
+- `npm run check` — fast: lint + typecheck + stylelint + markdownlint + format
+  check
+- `npm run check:ci` — CI target: adds tests, build, size, dupes, links, fast
+  security scanners, license allowlist
+- `npm run check:all` — pre-push: full gate including CodeQL and OWASP
+  Dependency-Check
+
+`npm run check:all` runs automatically on `git push` via Husky.
+
+## Contributing
+
+1. Run `bash scripts/bootstrap.sh` and `npm ci`.
+2. Create a branch, commit with
+   [Conventional Commits](https://www.conventionalcommits.org/) (enforced by
+   `commitlint` on commit-msg).
+3. Husky's `pre-commit` runs `lint-staged` + type check on staged files
+   - `gitleaks protect`. `pre-push` runs the full `check:all`.
+4. Open a PR targeting `main`. CI runs `check:ci`, Lighthouse CI, and the a11y
+   workflow. Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP,
+   lychee online) run weekly on `main`.
+5. Non-obvious engineering decisions get an ADR in [`docs/adr/`](docs/adr/) —
+   see [`docs/templates/adr-template.md`](docs/templates/adr-template.md).
 
 ## Tech Stack
 
