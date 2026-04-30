@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/assert-bin.sh"
+
+# External binaries used by npm run check:all. Each hint is Homebrew-centric;
+# scripts/bootstrap.sh covers non-mac install paths.
+assert_bin gitleaks       "brew install gitleaks"
+assert_bin lychee         "brew install lychee"
+assert_bin semgrep        "brew install semgrep"
+assert_bin osv-scanner    "brew install osv-scanner"
+assert_bin codeql         "See docs/adr/0003 — install CodeQL CLI from https://github.com/github/codeql-cli-binaries/releases"
+assert_bin dependency-check "brew install dependency-check"
+
+npm run check:all

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# When package-lock.json changes on pull/merge, reinstall and audit so nobody
+# sits on a stale dependency tree. Non-blocking; audit failures warn only.
+changed=$(git diff HEAD@{1} HEAD --name-only 2>/dev/null || true)
+if printf '%s\n' "$changed" | grep -q '^package-lock\.json$'; then
+  printf '[husky/post-merge] package-lock.json changed; running npm install...\n'
+  npm install
+  npm audit --production --audit-level=high || true
+fi

@@ -30,3 +30,4 @@ sequentially starting at `0001`.
 - [ADR 0003 — Run CodeQL, OWASP Dependency-Check, and OWASP ZAP locally, not only in scheduled Actions](./0003-heavy-scanner-placement.md)
 - [ADR 0004 — Allow BEM class selectors and disable `a11y/selector-pseudo-class-focus`](./0004-stylelint-bem-and-pseudo-class-focus.md)
 - [ADR 0005 — ESLint expansion calibrations and refactors](./0005-eslint-expansion-calibrations.md)
+- [ADR 0006 — Husky hook composition and local gate ordering](./0006-husky-and-local-gates.md)

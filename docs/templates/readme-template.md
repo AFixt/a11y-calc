@@ -31,8 +31,8 @@ Statement of WCAG compliance target and known limitations.
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+See `CONTRIBUTING.md` at the repo root.
 
 ## License
 
-[MIT](./LICENSE)
+MIT — see the `LICENSE` file at the repo root.

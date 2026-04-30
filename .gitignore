@@ -25,5 +25,11 @@ dist-ssr
 
 coverage/
 test-results/
+playwright-report/
+reports/
+.codeql-db/
+.stylelintcache
+.eslintcache
 
 CLAUDE.md
+.claude/

@@ -1,7 +1,13 @@
 import { CalcButton } from './CalcButton';
+import {
+  StandardRow1,
+  StandardRow2,
+  StandardRow3,
+  StandardRow4,
+  StandardRow5,
+} from './StandardRows';
 
 import type { ButtonPanelProps } from './ButtonPanel';
-import type { Operator } from '../../types/calculator';
 import type { ReactElement } from 'react';
 
 interface ScientificSpacerProps {
@@ -225,150 +231,26 @@ function ScientificRow4(props: ButtonPanelProps): ReactElement {
 /**
  * 10-column scientific calculator grid. Columns 1-6 host the scientific
  * functions (paren, power, trig, hyperbolic, constants, angle mode); columns
- * 7-10 mirror the basic calculator layout.
+ * 7-10 reuse the shared standard rows.
  */
 export function ScientificPanel(props: ButtonPanelProps): ReactElement {
-  const {
-    onDigit,
-    onDecimal,
-    onOperator,
-    onEquals,
-    onClear,
-    onToggleSign,
-    onPercent,
-    activeOperator,
-    waitingForOperand,
-  } = props;
-  const isPressed = (op: Operator): boolean => activeOperator === op && waitingForOperand;
-
   return (
-    <fieldset className="calc-buttons calc-buttons--scientific" aria-label="Calculator buttons">
+    <fieldset className="calc-buttons calc-buttons--scientific">
+      <legend className="sr-only">Calculator buttons</legend>
       <ScientificRow1 {...props} />
-      <CalcButton label="AC" ariaLabel="All clear" variant="function" onClick={onClear} />
-      <CalcButton
-        label="+/−"
-        ariaLabel="Toggle positive negative"
-        variant="function"
-        onClick={onToggleSign}
-      />
-      <CalcButton label="%" ariaLabel="Percent" variant="function" onClick={onPercent} />
-      <CalcButton
-        label="÷"
-        ariaLabel="Divide"
-        variant="operator"
-        pressed={isPressed('/')}
-        onClick={() => {
-          onOperator('/');
-        }}
-      />
+      <StandardRow1 {...props} />
 
       <ScientificRow2 {...props} />
-      <CalcButton
-        label="7"
-        ariaLabel="7"
-        onClick={() => {
-          onDigit('7');
-        }}
-      />
-      <CalcButton
-        label="8"
-        ariaLabel="8"
-        onClick={() => {
-          onDigit('8');
-        }}
-      />
-      <CalcButton
-        label="9"
-        ariaLabel="9"
-        onClick={() => {
-          onDigit('9');
-        }}
-      />
-      <CalcButton
-        label="×"
-        ariaLabel="Multiply"
-        variant="operator"
-        pressed={isPressed('*')}
-        onClick={() => {
-          onOperator('*');
-        }}
-      />
+      <StandardRow2 {...props} />
 
       <ScientificRow3 {...props} />
-      <CalcButton
-        label="4"
-        ariaLabel="4"
-        onClick={() => {
-          onDigit('4');
-        }}
-      />
-      <CalcButton
-        label="5"
-        ariaLabel="5"
-        onClick={() => {
-          onDigit('5');
-        }}
-      />
-      <CalcButton
-        label="6"
-        ariaLabel="6"
-        onClick={() => {
-          onDigit('6');
-        }}
-      />
-      <CalcButton
-        label="−"
-        ariaLabel="Subtract"
-        variant="operator"
-        pressed={isPressed('-')}
-        onClick={() => {
-          onOperator('-');
-        }}
-      />
+      <StandardRow3 {...props} />
 
       <ScientificRow4 {...props} />
-      <CalcButton
-        label="1"
-        ariaLabel="1"
-        onClick={() => {
-          onDigit('1');
-        }}
-      />
-      <CalcButton
-        label="2"
-        ariaLabel="2"
-        onClick={() => {
-          onDigit('2');
-        }}
-      />
-      <CalcButton
-        label="3"
-        ariaLabel="3"
-        onClick={() => {
-          onDigit('3');
-        }}
-      />
-      <CalcButton
-        label="+"
-        ariaLabel="Add"
-        variant="operator"
-        pressed={isPressed('+')}
-        onClick={() => {
-          onOperator('+');
-        }}
-      />
+      <StandardRow4 {...props} />
 
       <Spacers count={6} />
-      <CalcButton
-        label="0"
-        ariaLabel="0"
-        wide
-        onClick={() => {
-          onDigit('0');
-        }}
-      />
-      <CalcButton label="." ariaLabel="Decimal point" onClick={onDecimal} />
-      <CalcButton label="=" ariaLabel="Equals" variant="operator" onClick={onEquals} />
+      <StandardRow5 {...props} />
     </fieldset>
   );
 }
