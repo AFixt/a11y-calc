@@ -1,0 +1,20 @@
+# osv-scanner ignore list. Each entry must name the vuln, the package,
+# the reason, and (if time-bounded) the "ignoreUntil" date.
+#
+# Re-review every entry annually; remove entries whose upstream has shipped a
+# fix that our lockfile now includes.
+
+[[IgnoredVulns]]
+id = "GHSA-52f5-9888-hmc6"
+# tmp 0.0.33 / 0.1.0 — pulled in transitively by @lhci/cli via inquirer /
+# lighthouse's dev-only report generation. Not reachable from any production
+# bundle and not in the package.json `dependencies` closure. npm audit with
+# --production confirms 0 production vulns.
+reason = "dev-only transitive through @lhci/cli; not shipped"
+
+[[IgnoredVulns]]
+id = "GHSA-w5hq-g745-h8pq"
+# uuid 8.3.2 — same story, dev-only transitive through @lhci/cli. Fix is only
+# available in uuid 14.x, which forcing via npm overrides would break @lhci/cli
+# and other dev tools that depend on uuid ^8 or ^9.
+reason = "dev-only transitive through @lhci/cli; fix requires major bump that breaks tooling"
