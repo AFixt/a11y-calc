@@ -31,3 +31,8 @@ sequentially starting at `0001`.
 - [ADR 0004 — Allow BEM class selectors and disable `a11y/selector-pseudo-class-focus`](./0004-stylelint-bem-and-pseudo-class-focus.md)
 - [ADR 0005 — ESLint expansion calibrations and refactors](./0005-eslint-expansion-calibrations.md)
 - [ADR 0006 — Husky hook composition and local gate ordering](./0006-husky-and-local-gates.md)
+- [ADR 0007 — GitHub Actions safety net and Dependabot](./0007-github-actions-and-dependabot.md)
+- [ADR 0008 — Performance budgets and web-vitals placement](./0008-performance-budgets.md)
+- [ADR 0009 — Accessibility layering and Phase 6 docs](./0009-a11y-layering-and-docs.md)
+- [ADR 0010 — Automated npm release workflow](./0010-release-workflow.md)
+- [ADR 0011 — React Compiler annual review (2026)](./0011-react-compiler-2026-review.md)

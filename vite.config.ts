@@ -18,6 +18,7 @@ export default defineConfig({
         'src/main.tsx',
         'src/App.tsx',
         'src/test-setup.ts',
+        'src/dev-vitals.ts',
       ],
     }),
   ],
@@ -53,6 +54,7 @@ export default defineConfig({
       exclude: [
         'src/**/*.css',
         'src/main.tsx',
+        'src/dev-vitals.ts',
         'src/test-setup.ts',
         'src/**/*.test.*',
         'src/__tests__/**',
