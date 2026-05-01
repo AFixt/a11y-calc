@@ -33,12 +33,12 @@ const OPTIONS = { engineOptions: { type: 'automatic' as const } };
 describe('Calculator a11y-assert (component)', () => {
   it('basic mode passes accessibility assertions on first render', async () => {
     renderInPageShell(<Calculator />);
-    await jestAdapter(() => document.body, [], OPTIONS);
+    await jestAdapter(() => Promise.resolve(document.body), [], OPTIONS);
   });
 
   it('scientific mode passes accessibility assertions on first render', async () => {
     renderInPageShell(<Calculator initialMode="scientific" />);
-    await jestAdapter(() => document.body, [], OPTIONS);
+    await jestAdapter(() => Promise.resolve(document.body), [], OPTIONS);
   });
 
   it('still passes after a few interactions in scientific mode', async () => {
@@ -53,6 +53,6 @@ describe('Calculator a11y-assert (component)', () => {
       document.querySelector<HTMLButtonElement>('[aria-label="Close parenthesis"]')!,
     );
 
-    await jestAdapter(() => document.body, [], OPTIONS);
+    await jestAdapter(() => Promise.resolve(document.body), [], OPTIONS);
   });
 });

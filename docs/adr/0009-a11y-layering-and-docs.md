@@ -78,6 +78,10 @@ Follow-up: file an upstream issue on `@afixt/a11y-assert` to change `"lts/*"` to
 `">=18"` or similar. When fixed, we can reinstate `engine-strict=true` on a
 future version bump.
 
+**Resolved (2026-04-30, issue #10):** `@afixt/a11y-assert@2.1.3` now declares
+`engines.node: ">=22.0.0"` (a real semver range). Bumped the pin and reinstated
+`engine-strict=true` in `.npmrc`.
+
 ### TypeDoc is deferred
 
 Issue #1 mentions TypeDoc as an optional build target. Phase 2 already enforces
