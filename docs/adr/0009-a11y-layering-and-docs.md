@@ -95,6 +95,12 @@ For a single-component library with ~7 exported types and one component, the
 site would be almost empty. The TSDoc hover-docs cover the use case more
 directly. If the library surface grows, a future ADR can revisit.
 
+**Re-check 2026-04-30 (issue #13):** `src/index.ts` exports 6 public symbols
+(`Calculator` + 5 types: `AngleMode`, `CalculatorMode`, `CalculatorTheme`,
+`Operator`, `ScientificFunction`). Below the ~15-symbol threshold; deferral
+stands. Next re-check trigger: a new entry point, a public hook export, or
+crossing 15 symbols.
+
 ### `llms.txt` at the repo root
 
 Added per the [llmstxt.org](https://llmstxt.org) convention: a short
