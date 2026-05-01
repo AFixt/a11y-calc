@@ -114,6 +114,9 @@ React 19. However:
 When React Compiler reaches a clear win/cost threshold for library authors, a
 follow-up ADR can revisit.
 
+**2026 review:** see ADR 0011 — deferred again with measured byte-identical
+bundle output. Next review 2027-04.
+
 ## Alternatives considered
 
 - **Run Lighthouse on a schedule only, not on PRs.** Rejected — perf regressions

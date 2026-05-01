@@ -35,3 +35,4 @@ sequentially starting at `0001`.
 - [ADR 0008 — Performance budgets and web-vitals placement](./0008-performance-budgets.md)
 - [ADR 0009 — Accessibility layering and Phase 6 docs](./0009-a11y-layering-and-docs.md)
 - [ADR 0010 — Automated npm release workflow](./0010-release-workflow.md)
+- [ADR 0011 — React Compiler annual review (2026)](./0011-react-compiler-2026-review.md)
