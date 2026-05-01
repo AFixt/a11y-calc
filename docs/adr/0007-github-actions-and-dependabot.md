@@ -61,6 +61,8 @@ publish) is a sensitive action that needs:
 No release workflow ships in this phase. Adding one is a discrete task that
 deserves its own PR and its own ADR.
 
+**Resolved (2026-04-30):** see ADR 0010.
+
 ### ZAP runs in CI, not locally
 
 Per ADR 0003, ZAP is not in `pre-push`. It needs a running preview server. The
