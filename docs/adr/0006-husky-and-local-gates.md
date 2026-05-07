@@ -22,12 +22,12 @@ that mostly match ours, but several choices need justification:
 
 ### Hook composition
 
-| Hook         | Actions                                                                                    |
-| ------------ | ------------------------------------------------------------------------------------------ |
-| `pre-commit` | `assert_bin gitleaks` → `lint-staged` → `tsc-files --noEmit` → `gitleaks protect --staged` |
-| `commit-msg` | `commitlint --edit "$1"`                                                                   |
-| `pre-push`   | Assert presence of every external binary → `npm run check:all`                             |
-| `post-merge` | If `package-lock.json` changed, `npm install` + non-blocking `npm audit`                   |
+| Hook         | Actions                                                                                     |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| `pre-commit` | `assert_bin trufflehog` → `lint-staged` → `tsc-files --noEmit` → TruffleHog scan (ADR 0012) |
+| `commit-msg` | `commitlint --edit "$1"`                                                                    |
+| `pre-push`   | Assert presence of every external binary → `npm run check:all`                              |
+| `post-merge` | If `package-lock.json` changed, `npm install` + non-blocking `npm audit`                    |
 
 `lint-staged` runs ESLint + Prettier on changed JS/TS, Stylelint + Prettier on
 CSS, markdownlint + Prettier on Markdown, Prettier alone on JSON / YAML.

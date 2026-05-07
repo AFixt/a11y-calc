@@ -192,7 +192,7 @@ bash scripts/bootstrap.sh    # installs every external scanner used by the hooks
 npm ci
 ```
 
-The bootstrap script installs `gitleaks`, `lychee`, `semgrep`, `osv-scanner`,
+The bootstrap script installs `trufflehog`, `lychee`, `semgrep`, `osv-scanner`,
 `codeql`, `dependency-check`, and `zap` via Homebrew on macOS (with Linux/WSL
 release-binary hints for the rest). First run of `dependency-check` seeds the
 NVD mirror (~1 GB, 20–40 min — faster with an NVD API key).
@@ -233,7 +233,8 @@ npm run ai:context     # Print project summary (for AI sessions / new contribs)
    [Conventional Commits](https://www.conventionalcommits.org/) (enforced by
    `commitlint` on commit-msg).
 3. Husky's `pre-commit` runs `lint-staged` + type check on staged files
-   - `gitleaks protect`. `pre-push` runs the full `check:all`.
+   - TruffleHog secret scan (see ADR 0012). `pre-push` runs the full
+     `check:all`.
 4. Open a PR targeting `main`. CI runs `check:ci`, Lighthouse CI, and the a11y
    workflow. Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP,
    lychee online) run weekly on `main`.
