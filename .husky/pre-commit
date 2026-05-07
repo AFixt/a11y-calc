@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/assert-bin.sh"
 
-assert_bin gitleaks "brew install gitleaks"
+assert_bin trufflehog "brew install trufflehog"
 
 # lint-staged runs eslint + prettier + stylelint + markdownlint on staged files only
 npx lint-staged
@@ -9,5 +9,5 @@ npx lint-staged
 # Type-check only files that actually changed, against the full program
 npx tsc-files --noEmit
 
-# Secrets scan on the staged diff
-gitleaks protect --staged --no-banner --redact
+# Secrets scan on changes since HEAD (covers staged + unstaged working-tree edits)
+trufflehog git file://. --since-commit HEAD --only-verified --fail --no-update

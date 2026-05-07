@@ -2,7 +2,7 @@
 # Install every external binary the Husky hooks and npm scripts expect.
 # Idempotent: safe to re-run.
 #
-# Covers: gitleaks, lychee, semgrep, osv-scanner, codeql, dependency-check, zap.
+# Covers: trufflehog, lychee, semgrep, osv-scanner, codeql, dependency-check, zap.
 # Node/npm are not installed here; install via nvm or your OS package manager.
 #
 # macOS is the best-supported path (Homebrew). Linux/WSL users see the
@@ -71,11 +71,11 @@ log "Detected OS: $OS"
 
 ensure_node
 
-# --- gitleaks ---
+# --- trufflehog ---
 case "$OS" in
-  macos) brew_install_if_missing gitleaks ;;
-  linux) need gitleaks || install_linux_hint gitleaks "https://github.com/gitleaks/gitleaks/releases" ;;
-  *)     need gitleaks || install_linux_hint gitleaks "https://github.com/gitleaks/gitleaks/releases" ;;
+  macos) brew_install_if_missing trufflehog ;;
+  linux) need trufflehog || install_linux_hint trufflehog "https://github.com/trufflesecurity/trufflehog/releases" ;;
+  *)     need trufflehog || install_linux_hint trufflehog "https://github.com/trufflesecurity/trufflehog/releases" ;;
 esac
 
 # --- lychee ---
