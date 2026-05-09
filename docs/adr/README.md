@@ -37,3 +37,4 @@ sequentially starting at `0001`.
 - [ADR 0010 — Automated npm release workflow](./0010-release-workflow.md)
 - [ADR 0011 — React Compiler annual review (2026)](./0011-react-compiler-2026-review.md)
 - [ADR 0012 — Use TruffleHog instead of gitleaks for secret scanning](./0012-trufflehog-instead-of-gitleaks.md)
+- [ADR 0013 — Keep `CLAUDE.md` gitignored as local-only context](./0013-claude-md-local-only.md)
