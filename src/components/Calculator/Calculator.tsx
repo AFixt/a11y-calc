@@ -123,9 +123,7 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps): R
   );
 
   const themeStyle: CSSProperties | undefined = theme
-    ? (Object.fromEntries(
-        Object.entries(theme).map(([key, value]) => [`--${key}`, value]),
-      ) as CSSProperties)
+    ? Object.fromEntries(Object.entries(theme).map(([key, value]) => [`--${key}`, value]))
     : undefined;
 
   const containerClass = mode === 'scientific' ? 'calculator calculator--scientific' : 'calculator';

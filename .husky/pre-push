@@ -3,7 +3,7 @@
 
 # External binaries used by npm run check:all. Each hint is Homebrew-centric;
 # scripts/bootstrap.sh covers non-mac install paths.
-assert_bin gitleaks       "brew install gitleaks"
+assert_bin trufflehog     "brew install trufflehog"
 assert_bin lychee         "brew install lychee"
 assert_bin semgrep        "brew install semgrep"
 assert_bin osv-scanner    "brew install osv-scanner"
