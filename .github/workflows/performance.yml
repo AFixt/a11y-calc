@@ -24,8 +24,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
 
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm run build
       - run: npm run size
 
@@ -40,8 +44,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
 
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm run build:demo
 
       - name: Lighthouse CI

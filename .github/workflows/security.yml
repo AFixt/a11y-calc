@@ -37,8 +37,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
 
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Run Dependency-Check
         uses: dependency-check/Dependency-Check_Action@main
@@ -75,8 +79,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
 
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build demo
         run: npm run build:demo

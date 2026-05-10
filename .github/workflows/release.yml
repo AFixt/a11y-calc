@@ -33,6 +33,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
           registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
 
       - name: Verify tag matches package.json version
         env:
@@ -47,6 +48,8 @@ jobs:
 
       - name: Install npm dependencies
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Run pre-publish gates
         run: npm run check:ci
