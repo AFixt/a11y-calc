@@ -1,0 +1,36 @@
+id: announce-actions
+title: "Screen reader announces each action"
+type: positive
+description: 'Every action is narrated through a polite live region in natural language. A
+  completed calculation is announced as a full sentence, e.g. "7 plus 5 equals
+  12". This case reads the screen-reader spoken log via the sr_says verb.'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The screen reader speaks the spoken-form result of the calculation"
+
+# NOTE: sr_says requires the @guidepup/virtual-screen-reader peer dependency:
+#   npm install --save-dev @guidepup/virtual-screen-reader
+
+steps:
+  - locate: button "7"
+  - focus: button "7"
+  - activate: button "7"
+
+  - locate: button "Add"
+  - focus: button "Add"
+  - activate: button "Add"
+
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+
+  # The live region announces the full spoken sentence.
+  - sr_says: '"7 plus 5 equals 12"'

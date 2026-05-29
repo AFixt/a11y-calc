@@ -1,0 +1,29 @@
+id: switch-to-scientific-mode
+title: "Toggle from basic to scientific mode"
+type: positive
+description: 'The mode toggle button is labelled "Scientific" in basic mode. Activating it
+  switches the layout to scientific mode, exposing the scientific controls and
+  relabelling the toggle to "Basic".'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: 'Scientific controls are present and the toggle now reads "Basic"'
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  # The toggle relabels itself once scientific mode is active.
+  - verify: visible button "Basic"
+
+  # Scientific-only controls are now in the accessibility tree.
+  - verify: visible button "Open parenthesis"
+  - verify: visible button "Close parenthesis"
+  - verify: visible button "Pi"
+  - verify: visible button "Square root"
+  - verify: visible button "Factorial"
+  - verify: visible button "Second function"

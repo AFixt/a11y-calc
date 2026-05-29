@@ -1,0 +1,30 @@
+id: keyboard-clear-and-backspace
+title: "Keyboard — Backspace deletes a digit, Escape clears"
+type: positive
+description: "With focus inside the calculator, Backspace removes the last entered digit
+  and Escape resets to 0. Documents the Backspace and Escape key handlers."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display returns to 0 after Escape"
+
+steps:
+  # Place keyboard focus inside the calculator application region.
+  - locate: button "1"
+  - focus: button "1"
+
+  - keyboard: "1"
+  - keyboard: "2"
+  - keyboard: "3"
+  - verify: live_region "123"
+
+  # Backspace removes the trailing 3.
+  - keyboard: "Backspace"
+  - verify: live_region "12"
+
+  # Escape performs a full clear.
+  - keyboard: "Escape"
+  - verify: live_region "0"

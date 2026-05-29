@@ -1,0 +1,22 @@
+id: divide-by-zero
+title: "Basic mode — divide by zero (error state)"
+extends: basic-division
+type: negative
+description: "Extends the division flow but divides by zero. The calculator must surface an
+  error in the display rather than a number. Demonstrates the runner's
+  steps_override / extends mechanism."
+
+preconditions: []
+
+# Override from step 7 of basic-division (the second operand) onward: enter 0
+# instead of 2 and expect an error result.
+steps_override:
+  from_step: 7
+  steps:
+    - 'locate: button "0"'
+    - 'focus: button "0"'
+    - 'activate: button "0"'
+    - 'locate: button "Equals"'
+    - 'focus: button "Equals"'
+    - 'activate: button "Equals"'
+    - 'verify: live_region "Error"'

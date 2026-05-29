@@ -1,0 +1,26 @@
+# Configuration for @afixt/usecase-runner.
+#
+# Run the demo first so the use cases have something to drive:
+#   npm run build:demo && npm run preview   # serves http://localhost:4173
+#
+# Then, from the repo root:
+#   npx usecase-runner validate ./usecases
+#   npx usecase-runner run ./usecases --browser chromium
+#   npx usecase-runner generate ./usecases --outdir ./usecases/generated
+
+browser: chromium
+headed: false
+slow_mo: 0
+timeout: 30000
+viewport:
+  width: 1280
+  height: 720
+
+continue_on_failure: true
+screenshot_on_failure: true
+screenshot_dir: ./usecases/screenshots
+
+report_formats:
+  - json
+  - html
+report_dir: ./usecases/reports

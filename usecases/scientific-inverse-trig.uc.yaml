@@ -1,0 +1,43 @@
+id: scientific-inverse-trig
+title: "Scientific mode — inverse sine in degrees"
+type: positive
+description: 'Switch to scientific mode, set the angle unit to degrees, enter 1, enable the
+  2nd function set, and press Arc sine. asin(1) is 90 degrees.
+
+  The inverse trig functions are exercised here (rather than forward sin/cos/tan)
+  because their accessible names — "Arc sine", "Arc cosine", "Arc tangent" — are
+  unique. The forward names collide under the runner''s substring name matching:
+  "Sine" matches Sine, Cosine, Hyperbolic sine, and Hyperbolic cosine. To drive
+  a forward trig button by accessible name, the runner would need exact-match
+  support, or the buttons would need distinct names.'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 90"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  # Switch the angle unit from radians to degrees.
+  - locate: button "Currently radians, switch to degrees"
+  - focus: button "Currently radians, switch to degrees"
+  - activate: button "Currently radians, switch to degrees"
+
+  - locate: button "1"
+  - focus: button "1"
+  - activate: button "1"
+
+  # Enable the second function set so the inverse trig labels are exposed.
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  - locate: button "Arc sine"
+  - focus: button "Arc sine"
+  - activate: button "Arc sine"
+  - verify: live_region "90"

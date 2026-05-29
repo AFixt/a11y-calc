@@ -1,0 +1,25 @@
+id: scientific-square
+title: "Scientific mode — square a number (x²)"
+type: positive
+description: "Switch to scientific mode, enter 5, and press x² to get 25."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 25"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "x squared"
+  - focus: button "x squared"
+  - activate: button "x squared"
+  - verify: live_region "25"

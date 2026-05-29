@@ -1,0 +1,25 @@
+id: keyboard-arithmetic
+title: "Keyboard — arithmetic with the physical keyboard"
+type: positive
+description: 'The calculator owns a keyboard model on its role="application" container.
+  With focus inside the widget, the number row, operators, and Enter all drive
+  the calculation without clicking any button. We first focus a button to place
+  keyboard focus inside the application, then type 7 + 5 Enter.'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 12"
+
+steps:
+  # Place keyboard focus inside the calculator application region.
+  - locate: button "7"
+  - focus: button "7"
+
+  - keyboard: "7"
+  - keyboard: "+"
+  - keyboard: "5"
+  - keyboard: "Enter"
+  - verify: live_region "12"

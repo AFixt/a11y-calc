@@ -1,0 +1,27 @@
+id: clear-all
+title: "Basic mode — clear the calculator"
+type: positive
+description: 'After entering digits, pressing AC resets the display to 0 and announces
+  "All cleared, 0".'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 0"
+
+steps:
+  - locate: button "9"
+  - focus: button "9"
+  - activate: button "9"
+
+  - locate: button "9"
+  - focus: button "9"
+  - activate: button "9"
+  - verify: live_region "99"
+
+  - locate: button "All clear"
+  - focus: button "All clear"
+  - activate: button "All clear"
+  - verify: live_region "0"
