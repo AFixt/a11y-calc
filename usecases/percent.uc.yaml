@@ -1,0 +1,25 @@
+id: percent
+title: "Basic mode — percent conversion"
+type: positive
+description: "User enters 50 then presses % to convert it to 0.5."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 0.5"
+
+steps:
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "0"
+  - focus: button "0"
+  - activate: button "0"
+
+  - locate: button "Percent"
+  - focus: button "Percent"
+  - activate: button "Percent"
+  - verify: live_region "0.5"

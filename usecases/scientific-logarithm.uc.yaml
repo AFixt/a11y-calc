@@ -1,0 +1,27 @@
+id: scientific-logarithm
+title: "Scientific mode — natural log of 1"
+type: positive
+description: "Switch to scientific mode, enter 1, then press ln. The natural log of 1 is
+  exactly 0 — a deterministic check of the ln function. (ln of e is avoided here
+  because floating-point formatting yields 0.9999999998 rather than 1.)"
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 0"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "1"
+  - focus: button "1"
+  - activate: button "1"
+
+  - locate: button "Natural log"
+  - focus: button "Natural log"
+  - activate: button "Natural log"
+  - verify: live_region "0"

@@ -1,0 +1,32 @@
+id: scientific-constants
+title: "Scientific mode — insert the π and e constants"
+type: positive
+description: "Switch to scientific mode and insert each mathematical constant. π is checked
+  for its 3.14… prefix, then the calculator is cleared and e is checked for its
+  2.71… prefix."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows π then e"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "Pi"
+  - focus: button "Pi"
+  - activate: button "Pi"
+  - verify: live_region "3.14"
+
+  - locate: button "All clear"
+  - focus: button "All clear"
+  - activate: button "All clear"
+
+  - locate: button "Euler's number e"
+  - focus: button "Euler's number e"
+  - activate: button "Euler's number e"
+  - verify: live_region "2.71"

@@ -1,0 +1,25 @@
+id: scientific-factorial
+title: "Scientific mode — factorial (x!)"
+type: positive
+description: "Switch to scientific mode, enter 5, and press x! to get 120."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 120"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "Factorial"
+  - focus: button "Factorial"
+  - activate: button "Factorial"
+  - verify: live_region "120"

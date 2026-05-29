@@ -1,0 +1,29 @@
+id: basic-subtraction
+title: "Basic mode — subtract two numbers"
+type: positive
+description: "User subtracts 3 from 8 with the on-screen buttons."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 5"
+
+steps:
+  - locate: button "8"
+  - focus: button "8"
+  - activate: button "8"
+
+  - locate: button "Subtract"
+  - focus: button "Subtract"
+  - activate: button "Subtract"
+
+  - locate: button "3"
+  - focus: button "3"
+  - activate: button "3"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+  - verify: live_region "5"

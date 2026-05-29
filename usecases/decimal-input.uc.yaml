@@ -1,0 +1,30 @@
+id: decimal-input
+title: "Basic mode — enter a decimal number"
+type: positive
+description: "User types 3, decimal point, 1, 4 to enter 3.14. Consecutive digits target
+  different buttons, so each gets its own locate + focus."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 3.14"
+
+steps:
+  - locate: button "3"
+  - focus: button "3"
+  - activate: button "3"
+
+  - locate: button "Decimal point"
+  - focus: button "Decimal point"
+  - activate: button "Decimal point"
+
+  - locate: button "1"
+  - focus: button "1"
+  - activate: button "1"
+
+  - locate: button "4"
+  - focus: button "4"
+  - activate: button "4"
+  - verify: live_region "3.14"

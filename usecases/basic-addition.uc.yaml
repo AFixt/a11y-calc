@@ -1,0 +1,31 @@
+id: basic-addition
+title: "Basic mode — add two numbers"
+type: positive
+description: "User adds 7 and 5 with the on-screen buttons. The running result is exposed
+  through the display, which is a live region."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 12"
+
+steps:
+  - locate: button "7"
+  - focus: button "7"
+  - activate: button "7"
+  - verify: live_region "7"
+
+  - locate: button "Add"
+  - focus: button "Add"
+  - activate: button "Add"
+
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+  - verify: live_region "12"
