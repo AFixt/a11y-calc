@@ -1,0 +1,25 @@
+id: scientific-reciprocal
+title: "Scientific mode — reciprocal (1/x)"
+type: positive
+description: "Switch to scientific mode, enter 4, and press 1/x to get 0.25."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 0.25"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "4"
+  - focus: button "4"
+  - activate: button "4"
+
+  - locate: button "Reciprocal"
+  - focus: button "Reciprocal"
+  - activate: button "Reciprocal"
+  - verify: live_region "0.25"

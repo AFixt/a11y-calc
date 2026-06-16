@@ -1,0 +1,27 @@
+id: audit-full-page
+title: "Automated WCAG audit of the calculator page"
+type: positive
+description: "Runs an automated accessibility audit of the whole demo page, both on initial
+  load (basic mode) and after switching to scientific mode, so the larger button
+  grid is audited too."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The page passes WCAG AA in both modes"
+
+# NOTE: the audit verb requires the @afixt/afixt-engine peer dependency:
+#   npm install --save-dev @afixt/afixt-engine
+
+steps:
+  # Audit the page as first rendered (basic mode).
+  - audit: page
+
+  # Switch to scientific mode and audit the expanded layout.
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+  - verify: visible button "Basic"
+  - audit: page

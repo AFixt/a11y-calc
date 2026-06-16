@@ -1,0 +1,22 @@
+id: toggle-sign
+title: "Basic mode — toggle the sign of a number"
+type: positive
+description: "User enters 5 then presses +/− to negate it. The display shows -5 and the
+  live region announces the negative value."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows -5"
+
+steps:
+  - locate: button "5"
+  - focus: button "5"
+  - activate: button "5"
+
+  - locate: button "Toggle positive negative"
+  - focus: button "Toggle positive negative"
+  - activate: button "Toggle positive negative"
+  - verify: live_region "-5"

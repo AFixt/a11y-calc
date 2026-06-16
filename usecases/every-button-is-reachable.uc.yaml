@@ -1,0 +1,21 @@
+id: every-button-is-reachable
+title: "Every calculator button is in the a11y tree and keyboard-focusable"
+type: positive
+description: "Audit-shaped check: enumerate every button on the page and confirm each one
+  is exposed in the accessibility tree (locate) and can receive keyboard focus
+  (focus). A button that is visually present but missing a role/name, or that
+  cannot be focused, fails its iteration."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "Every button is reachable and focusable"
+
+scope:
+  for_each: 'role "button"'
+
+steps:
+  - locate: self
+  - focus: self

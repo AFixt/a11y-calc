@@ -1,0 +1,25 @@
+id: scientific-square-root
+title: "Scientific mode — square root (√x)"
+type: positive
+description: "Switch to scientific mode, enter 9, and press √x to get 3."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 3"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "9"
+  - focus: button "9"
+  - activate: button "9"
+
+  - locate: button "Square root"
+  - focus: button "Square root"
+  - activate: button "Square root"
+  - verify: live_region "3"

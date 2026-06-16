@@ -1,0 +1,37 @@
+id: scientific-second-function
+title: "Scientific mode — 2nd function toggle swaps trig labels"
+type: positive
+description: 'In scientific mode the "Second function" button swaps the primary trig
+  functions for their inverses: sin becomes asin (Arc sine), and so on. Toggling
+  it again restores the primary labels. The inverse names ("Arc sine") are used
+  for assertions because they are uniquely addressable by accessible name —
+  "Sine" is a substring of "Cosine", "Hyperbolic sine", etc.'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "After enabling 2nd, the trig buttons expose inverse functions (Arc sine)"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  # In primary mode the inverse trig functions are not present.
+  - verify: hidden button "Arc sine"
+
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  # Inverse trig functions are now exposed, and the toggle reports its state.
+  - verify: visible button "Arc sine"
+  - verify: visible button "Second function active, click for primary"
+
+  # Toggling back hides the inverse functions again.
+  - locate: button "Second function active, click for primary"
+  - focus: button "Second function active, click for primary"
+  - activate: button "Second function active, click for primary"
+  - verify: hidden button "Arc sine"

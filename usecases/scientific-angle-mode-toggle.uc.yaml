@@ -1,0 +1,24 @@
+id: scientific-angle-mode-toggle
+title: "Scientific mode — toggle between radians and degrees"
+type: positive
+description: 'The angle-mode button''s accessible name reflects both the current unit and
+  the action it performs. It starts as "Currently radians, switch to degrees";
+  after activation it becomes "Currently degrees, switch to radians".'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The angle-mode button toggles its accessible name to degrees"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "Currently radians, switch to degrees"
+  - focus: button "Currently radians, switch to degrees"
+  - activate: button "Currently radians, switch to degrees"
+
+  - verify: visible button "Currently degrees, switch to radians"

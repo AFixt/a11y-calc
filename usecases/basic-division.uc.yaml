@@ -1,0 +1,29 @@
+id: basic-division
+title: "Basic mode — divide two numbers"
+type: positive
+description: "User divides 8 by 2 with the on-screen buttons."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 4"
+
+steps:
+  - locate: button "8"
+  - focus: button "8"
+  - activate: button "8"
+
+  - locate: button "Divide"
+  - focus: button "Divide"
+  - activate: button "Divide"
+
+  - locate: button "2"
+  - focus: button "2"
+  - activate: button "2"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+  - verify: live_region "4"

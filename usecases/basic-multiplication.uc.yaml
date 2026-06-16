@@ -1,0 +1,29 @@
+id: basic-multiplication
+title: "Basic mode — multiply two numbers"
+type: positive
+description: "User multiplies 6 by 7 with the on-screen buttons."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 42"
+
+steps:
+  - locate: button "6"
+  - focus: button "6"
+  - activate: button "6"
+
+  - locate: button "Multiply"
+  - focus: button "Multiply"
+  - activate: button "Multiply"
+
+  - locate: button "7"
+  - focus: button "7"
+  - activate: button "7"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+  - verify: live_region "42"

@@ -1,0 +1,51 @@
+id: scientific-parentheses
+title: "Scientific mode — grouping with parentheses"
+type: positive
+description: "Parentheses override the immediate-execution order. (2 + 3) is evaluated to 5
+  on close-paren, then multiplied by 4 to give 20."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 20"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "Open parenthesis"
+  - focus: button "Open parenthesis"
+  - activate: button "Open parenthesis"
+
+  - locate: button "2"
+  - focus: button "2"
+  - activate: button "2"
+
+  - locate: button "Add"
+  - focus: button "Add"
+  - activate: button "Add"
+
+  - locate: button "3"
+  - focus: button "3"
+  - activate: button "3"
+
+  - locate: button "Close parenthesis"
+  - focus: button "Close parenthesis"
+  - activate: button "Close parenthesis"
+  - verify: live_region "5"
+
+  - locate: button "Multiply"
+  - focus: button "Multiply"
+  - activate: button "Multiply"
+
+  - locate: button "4"
+  - focus: button "4"
+  - activate: button "4"
+
+  - locate: button "Equals"
+  - focus: button "Equals"
+  - activate: button "Equals"
+  - verify: live_region "20"
