@@ -90,7 +90,8 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "overrides": {
-    "tmp": ">=0.2.6"
+    "tmp": ">=0.2.6",
+    "markdown-it": "^14.2.0"
   },
   "devDependencies": {
     "@afixt/a11y-assert": "2.1.3",

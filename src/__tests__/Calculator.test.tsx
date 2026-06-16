@@ -55,11 +55,6 @@ describe('Calculator', () => {
       expect(region).toHaveAttribute('aria-atomic', 'true');
     });
 
-    it('renders a button group with accessible name', () => {
-      renderCalculator();
-      expect(screen.getByRole('group', { name: /calculator buttons/i })).toBeInTheDocument();
-    });
-
     it('renders all digit buttons (0-9) with accessible names', () => {
       renderCalculator();
       for (let i = 0; i <= 9; i++) {
@@ -98,7 +93,7 @@ describe('Calculator', () => {
 
     it('renders exactly 19 buttons', () => {
       renderCalculator();
-      const buttonGroup = screen.getByRole('group', { name: /calculator buttons/i });
+      const buttonGroup = screen.getByTestId('button-grid');
       const buttons = within(buttonGroup).getAllByRole('button');
       // 10 digits + 4 operators + AC + +/- + % + . + = = 19
       expect(buttons).toHaveLength(19);
@@ -318,6 +313,15 @@ describe('Calculator', () => {
       await user.click(btn('All clear'));
       await user.keyboard('6*7{Enter}');
       expect(getDisplay()).toHaveTextContent('42');
+    });
+
+    it('container is focusable so keys work without a button focused', async () => {
+      const { user } = renderCalculator();
+      const calc = screen.getByRole('application');
+      calc.focus();
+      expect(calc).toHaveFocus();
+      await user.keyboard('1+2=');
+      expect(getDisplay()).toHaveTextContent('3');
     });
 
     it('accepts = key for equals', async () => {

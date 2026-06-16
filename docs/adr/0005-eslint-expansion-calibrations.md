@@ -1,6 +1,8 @@
 # ADR 0005: ESLint expansion calibrations and refactors
 
-- **Status:** Accepted
+- **Status:** Accepted (the `<div role="group">` → `<fieldset>` button-grid
+  decision is **superseded by
+  [ADR 0014](./0014-calculator-keyboard-focus-and-button-grouping.md)**)
 - **Date:** 2026-04-23
 - **Deciders:** Karl Groves
 

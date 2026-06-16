@@ -31,7 +31,7 @@ test.describe('Calculator E2E', () => {
     });
 
     test('renders 19 calculator buttons plus mode toggle', async ({ page }) => {
-      const buttonGroup = page.getByRole('group', { name: /calculator buttons/i });
+      const buttonGroup = page.getByTestId('button-grid');
       const calcButtons = buttonGroup.getByRole('button');
       await expect(calcButtons).toHaveCount(19);
     });
@@ -712,7 +712,7 @@ test.describe('Calculator E2E', () => {
     });
 
     test('calculator buttons meet minimum touch target size (44px)', async ({ page }) => {
-      const buttonGroup = page.getByRole('group', { name: /calculator buttons/i });
+      const buttonGroup = page.getByTestId('button-grid');
       const buttons = buttonGroup.getByRole('button');
       const count = await buttons.count();
       for (let i = 0; i < count; i++) {

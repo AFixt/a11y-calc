@@ -235,8 +235,7 @@ function ScientificRow4(props: ButtonPanelProps): ReactElement {
  */
 export function ScientificPanel(props: ButtonPanelProps): ReactElement {
   return (
-    <fieldset className="calc-buttons calc-buttons--scientific">
-      <legend className="sr-only">Calculator buttons</legend>
+    <div className="calc-buttons calc-buttons--scientific" data-testid="button-grid">
       <ScientificRow1 {...props} />
       <StandardRow1 {...props} />
 
@@ -251,6 +250,6 @@ export function ScientificPanel(props: ButtonPanelProps): ReactElement {
 
       <Spacers count={6} />
       <StandardRow5 {...props} />
-    </fieldset>
+    </div>
   );
 }

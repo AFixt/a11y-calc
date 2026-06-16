@@ -15,13 +15,12 @@ import type { ReactElement } from 'react';
  */
 export function BasicPanel(props: ButtonPanelProps): ReactElement {
   return (
-    <fieldset className="calc-buttons">
-      <legend className="sr-only">Calculator buttons</legend>
+    <div className="calc-buttons" data-testid="button-grid">
       <StandardRow1 {...props} />
       <StandardRow2 {...props} />
       <StandardRow3 {...props} />
       <StandardRow4 {...props} />
       <StandardRow5 {...props} />
-    </fieldset>
+    </div>
   );
 }

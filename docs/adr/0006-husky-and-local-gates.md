@@ -1,6 +1,9 @@
 # ADR 0006: Husky hook composition and local gate ordering
 
-- **Status:** Accepted
+- **Status:** Accepted (the "Fieldset accessibility" `<legend>` decision is
+  **superseded by
+  [ADR 0014](./0014-calculator-keyboard-focus-and-button-grouping.md)**, which
+  removes the button-grid grouping entirely)
 - **Date:** 2026-04-23
 - **Deciders:** Karl Groves
 

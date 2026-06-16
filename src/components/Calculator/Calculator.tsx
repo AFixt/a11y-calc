@@ -139,6 +139,11 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps): R
       role="application"
       aria-label="Calculator"
       aria-roledescription="calculator"
+      // tabIndex makes the whole widget focusable so that keystrokes are routed
+      // to handleKeyDown no matter where focus lands inside the calculator —
+      // a focused button (event bubbles up), the toolbar, the display, padding,
+      // or the container itself after a click or Tab.
+      tabIndex={0}
       onKeyDown={handleKeyDown}
     >
       {/* Live region for screen reader announcements */}
