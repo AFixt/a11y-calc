@@ -91,7 +91,8 @@
   },
   "overrides": {
     "tmp": ">=0.2.6",
-    "markdown-it": "^14.2.0"
+    "markdown-it": "^14.2.0",
+    "undici": "^7.28.0"
   },
   "devDependencies": {
     "@afixt/a11y-assert": "2.1.3",
