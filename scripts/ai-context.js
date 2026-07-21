@@ -79,5 +79,4 @@ console.log(
 );
 console.log('- npm run check:all     — pre-push: check:ci + security:codeql + security:depcheck');
 console.log('- npm run test:e2e      — Playwright against a built demo');
-console.log('- npm run lhci          — Lighthouse CI against the built demo');
 console.log('');
