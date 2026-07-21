@@ -5,19 +5,11 @@
 # fix that our lockfile now includes.
 
 [[IgnoredVulns]]
-id = "GHSA-w5hq-g745-h8pq"
-# uuid 8.3.2 — same story, dev-only transitive through @lhci/cli. Fix is only
-# available in uuid 14.x, which forcing via npm overrides would break @lhci/cli
-# and other dev tools that depend on uuid ^8 or ^9.
-reason = "dev-only transitive through @lhci/cli; fix requires major bump that breaks tooling"
-
-[[IgnoredVulns]]
 id = "GHSA-h67p-54hq-rp68"
-# js-yaml quadratic-complexity DoS in merge-key (`<<`) handling. Two dev-only
-# transitive instances: js-yaml 3.14.2 via @lhci/cli (no fix — 3.14.2 is the
-# latest 3.x release) and js-yaml 4.1.1 via eslint / stylelint / markdownlint.
+# js-yaml quadratic-complexity DoS in merge-key (`<<`) handling. Dev-only
+# transitive instance: js-yaml 4.1.1 via eslint / stylelint / markdownlint.
 # The DoS is only reachable when parsing *untrusted* YAML containing repeated
 # merge aliases; every consumer here parses only the project's own trusted
 # config files, never attacker-controlled input. Not in the production
 # `dependencies` closure — `npm audit --production` confirms 0 production vulns.
-reason = "dev-only transitive (eslint/stylelint/markdownlint/@lhci); only trusted project config parsed, DoS not reachable; no fix for the 3.x @lhci instance"
+reason = "dev-only transitive (eslint/stylelint/markdownlint); only trusted project config parsed, DoS not reachable"
