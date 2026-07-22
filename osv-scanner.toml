@@ -3,13 +3,5 @@
 #
 # Re-review every entry annually; remove entries whose upstream has shipped a
 # fix that our lockfile now includes.
-
-[[IgnoredVulns]]
-id = "GHSA-h67p-54hq-rp68"
-# js-yaml quadratic-complexity DoS in merge-key (`<<`) handling. Dev-only
-# transitive instance: js-yaml 4.1.1 via eslint / stylelint / markdownlint.
-# The DoS is only reachable when parsing *untrusted* YAML containing repeated
-# merge aliases; every consumer here parses only the project's own trusted
-# config files, never attacker-controlled input. Not in the production
-# `dependencies` closure — `npm audit --production` confirms 0 production vulns.
-reason = "dev-only transitive (eslint/stylelint/markdownlint); only trusted project config parsed, DoS not reachable"
+#
+# (No entries at present.)
