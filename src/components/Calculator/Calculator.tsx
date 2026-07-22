@@ -130,9 +130,7 @@ export function Calculator({ theme, initialMode = 'basic' }: CalculatorProps): R
 
   return (
     // role="application" is the correct semantic for a calculator widget that
-    // owns its own keyboard model. The jsx-a11y heuristic does not understand
-    // this pattern, so the rule is disabled on this element.
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    // owns its own keyboard model.
     <div
       className={containerClass}
       style={themeStyle}

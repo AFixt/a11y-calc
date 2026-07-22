@@ -26,12 +26,12 @@
   --btn-function-text: #000;
   --btn-function-hover: #b8b8b8;
   --btn-function-active: #c8c8c8;
-  --btn-operator-bg: #f09a36;
+  --btn-operator-bg: #cc7000;
   --btn-operator-text: #fff;
-  --btn-operator-hover: #f5b04e;
-  --btn-operator-active: #f8c06a;
+  --btn-operator-hover: #b86600;
+  --btn-operator-active: #a35a00;
   --btn-operator-pressed-bg: #fff;
-  --btn-operator-pressed-text: #f09a36;
+  --btn-operator-pressed-text: #cc7000;
   --btn-scientific-bg: #3a3a3a;
   --btn-scientific-text: #fff;
   --btn-scientific-hover: #4a4a4a;
@@ -43,7 +43,7 @@
     -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial, sans-serif;
   --calc-z-focus: 1;
   --toolbar-bg: transparent;
-  --toolbar-text: rgb(255 255 255 / 60%);
+  --toolbar-text: rgb(255 255 255 / 70%);
   --toolbar-hover: rgb(255 255 255 / 15%);
 }
 
@@ -62,7 +62,14 @@
 
 /* Calculator container */
 .calculator {
-  width: var(--calc-width);
+  /* Fill the host container up to the design width, but shrink to fit narrow
+     viewports / zoom (WCAG 1.4.10 Reflow) rather than forcing page-level
+     horizontal scroll. `min-width: min-content` keeps the keypad from being
+     clipped: it reflows down to its functional minimum, then (only past that)
+     scrolls — the 2D-layout exception in 1.4.10. */
+  width: 100%;
+  max-width: var(--calc-width);
+  min-width: min-content;
   background: var(--calc-bg);
   border-radius: var(--calc-radius);
   overflow: hidden;
@@ -77,7 +84,7 @@
 }
 
 .calculator--scientific {
-  width: var(--calc-width-scientific);
+  max-width: var(--calc-width-scientific);
 }
 
 /* Toolbar */
@@ -130,14 +137,14 @@
 }
 
 .calc-display__angle-mode {
-  color: rgb(255 255 255 / 40%);
+  color: rgb(255 255 255 / 60%);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
 .calc-display__parens {
-  color: rgb(255 255 255 / 40%);
+  color: rgb(255 255 255 / 60%);
   font-size: var(--display-expression-size);
 }
 
@@ -285,7 +292,7 @@
     --btn-number-text: #fff;
     --btn-function-bg: #d0d0d0;
     --btn-function-text: #000;
-    --btn-operator-bg: #e07800;
+    --btn-operator-bg: #b35e00;
     --btn-operator-text: #fff;
     --btn-scientific-bg: #2a2a2a;
     --btn-scientific-text: #fff;
@@ -335,13 +342,13 @@
     --btn-function-hover: #b8b8b6;
     --btn-function-active: #a8a8a6;
     --btn-operator-pressed-bg: #1a1a1a;
-    --btn-operator-pressed-text: #f09a36;
+    --btn-operator-pressed-text: #f5a742;
     --btn-scientific-bg: #d8d8d6;
     --btn-scientific-text: #1a1a1a;
     --btn-scientific-hover: #c8c8c6;
     --btn-scientific-active: #b8b8b6;
     --focus-ring-color: #06c;
-    --toolbar-text: rgb(26 26 26 / 60%);
+    --toolbar-text: rgb(26 26 26 / 70%);
     --toolbar-hover: rgb(0 0 0 / 8%);
   }
 
@@ -352,7 +359,7 @@
   .calc-display__expression,
   .calc-display__angle-mode,
   .calc-display__parens {
-    color: rgb(26 26 26 / 50%);
+    color: rgb(26 26 26 / 70%);
   }
 
   .calc-mode-toggle {
