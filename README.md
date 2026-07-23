@@ -194,7 +194,11 @@ npm ci
 The bootstrap script installs `trufflehog`, `lychee`, `semgrep`, `osv-scanner`,
 `codeql`, `dependency-check`, and `zap` via Homebrew on macOS (with Linux/WSL
 release-binary hints for the rest). First run of `dependency-check` seeds the
-NVD mirror (~1 GB, 20–40 min — faster with an NVD API key).
+NVD mirror (~1 GB, 20–40 min — faster with an NVD API key). To use a key,
+[request one from NVD](https://nvd.nist.gov/developers/request-an-api-key) and
+export it as `NVD_API_KEY` (e.g. in your shell profile);
+`npm run security:depcheck` picks it up automatically and updates drop from ~an
+hour to a couple of minutes.
 
 ### Scripts
 
