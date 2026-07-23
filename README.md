@@ -104,12 +104,11 @@ automatically.
 ### Conformance
 
 The `<Calculator>` component targets **WCAG 2.2 AA**. Accessibility is verified
-at four layers:
+at three layers:
 
-1. `eslint-plugin-jsx-a11y` at lint time
-2. `@afixt/a11y-assert` via Vitest against the rendered component
-3. `@afixt/a11y-assert` via Playwright against the running demo
-4. A dedicated `accessibility` GitHub Actions workflow on every PR
+1. `@afixt/a11y-assert` via Vitest against the rendered component
+2. `@afixt/a11y-assert` via Playwright against the running demo
+3. A dedicated `accessibility` GitHub Actions workflow on every PR
 
 See [ADR 0009](docs/adr/0009-a11y-layering-and-docs.md) for the layering
 rationale. Known limitations are tracked as issues labeled `a11y`.
@@ -211,7 +210,6 @@ npm run test:watch     # Tests in watch mode
 npm run test:coverage  # Tests with coverage report
 npm run test:e2e       # Build demo + run Playwright E2E tests
 npm run size           # size-limit budgets
-npm run lhci           # Lighthouse CI against the demo
 npm run ai:context     # Print project summary (for AI sessions / new contribs)
 ```
 
@@ -235,9 +233,9 @@ npm run ai:context     # Print project summary (for AI sessions / new contribs)
 3. Husky's `pre-commit` runs `lint-staged` + type check on staged files
    - TruffleHog secret scan (see ADR 0012). `pre-push` runs the full
      `check:all`.
-4. Open a PR targeting `main`. CI runs `check:ci`, Lighthouse CI, and the a11y
-   workflow. Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP,
-   lychee online) run weekly on `main`.
+4. Open a PR targeting `main`. CI runs `check:ci` and the a11y workflow.
+   Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP, lychee
+   online) run weekly on `main`.
 5. Non-obvious engineering decisions get an ADR in [`docs/adr/`](docs/adr/) —
    see [`docs/templates/adr-template.md`](docs/templates/adr-template.md).
 
