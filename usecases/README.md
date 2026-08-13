@@ -76,6 +76,7 @@ Keyboard:
 
 - `keyboard-arithmetic.uc.yaml` — physical-keyboard digits/operators/Enter
 - `keyboard-clear-and-backspace.uc.yaml` — Backspace and Escape keys
+- `keyboard-scientific.uc.yaml` — `^`, `(` and `)` keys in scientific mode
 
 Mode and scientific functions:
 
@@ -91,6 +92,15 @@ Mode and scientific functions:
 - `scientific-inverse-trig.uc.yaml` — inverse trig in degrees (`asin(1) = 90`)
 - `scientific-angle-mode-toggle.uc.yaml` — radians/degrees toggle
 - `scientific-parentheses.uc.yaml` — grouping (`(2 + 3) x 4 = 20`)
+- `scientific-hyperbolic.uc.yaml` — hyperbolic cosine (`cosh(0) = 1`)
+- `scientific-inverse-hyperbolic.uc.yaml` — inverse hyperbolic cosine via 2nd
+  (`acosh(1) = 0`)
+- `scientific-logarithm-base10.uc.yaml` — log base 10 via 2nd (`log10(100) = 2`)
+- `scientific-cube.uc.yaml` — cube via 2nd (`2` becomes `8`)
+- `scientific-cube-root.uc.yaml` — cube root via 2nd (`27` becomes `3`)
+- `scientific-exponential.uc.yaml` — `eˣ` and `10ˣ` (`e⁰ = 1`, `10² = 100`)
+- `scientific-domain-error.uc.yaml` — error path; square root of a negative
+  number surfaces `Error`
 
 Accessibility-focused:
 

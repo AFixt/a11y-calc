@@ -1,0 +1,25 @@
+id: scientific-hyperbolic
+title: "Scientific mode — hyperbolic cosine"
+type: positive
+description: 'Switch to scientific mode and apply cosh to the initial 0. cosh(0) is 1.
+  The hyperbolic buttons are addressable by accessible name — "Hyperbolic
+  cosine" is unique among the rendered buttons (the inverse set is only
+  rendered while 2nd is active) — unlike the forward trig names, which
+  collide under substring matching (see scientific-inverse-trig).'
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 1"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "Hyperbolic cosine"
+  - focus: button "Hyperbolic cosine"
+  - activate: button "Hyperbolic cosine"
+  - verify: live_region "1"
