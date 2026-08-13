@@ -237,9 +237,10 @@ npm run ai:context     # Print project summary (for AI sessions / new contribs)
 3. Husky's `pre-commit` runs `lint-staged` + type check on staged files
    - TruffleHog secret scan (see ADR 0012). `pre-push` runs the full
      `check:all`.
-4. Open a PR targeting `main`. CI runs `check:ci` and the a11y workflow.
-   Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP, lychee
-   online) run weekly on `main`.
+4. Open a PR targeting `main`. CI runs `check:ci`, the a11y and performance
+   workflows, the security workflow (CodeQL, OWASP Dependency-Check, OWASP ZAP
+   baseline), and — when Markdown changes — the lychee online link check. There
+   are no scheduled workflows (see ADR 0015).
 5. Non-obvious engineering decisions get an ADR in [`docs/adr/`](docs/adr/) —
    see [`docs/templates/adr-template.md`](docs/templates/adr-template.md).
 
