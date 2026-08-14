@@ -1,0 +1,31 @@
+id: scientific-inverse-hyperbolic
+title: "Scientific mode — inverse hyperbolic cosine via 2nd"
+type: positive
+description: "Switch to scientific mode, enter 1, enable the 2nd function set, and press
+  Inverse hyperbolic cosine. acosh(1) is 0. Exercises the inverse hyperbolic
+  set, which is only rendered while 2nd is active."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 0"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "1"
+  - focus: button "1"
+  - activate: button "1"
+
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  - locate: button "Inverse hyperbolic cosine"
+  - focus: button "Inverse hyperbolic cosine"
+  - activate: button "Inverse hyperbolic cosine"
+  - verify: live_region "0"

@@ -1,0 +1,45 @@
+id: keyboard-scientific
+title: "Keyboard — power and parentheses keys in scientific mode"
+type: positive
+description: "The ^, ( and ) keys drive the scientific-mode keyboard model documented in
+  the README. With focus inside the widget, 2 ^ 3 Enter yields 8; after Escape,
+  ( 2 + 3 ) * 4 Enter yields 20. Companion to keyboard-arithmetic, which covers
+  the basic-mode keys."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 8, then 20"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  # Place keyboard focus inside the calculator application region.
+  - locate: button "2"
+  - focus: button "2"
+
+  # 2 ^ 3 = 8 via the power key.
+  - keyboard: "2"
+  - keyboard: "^"
+  - keyboard: "3"
+  - keyboard: "Enter"
+  - verify: live_region "8"
+
+  - keyboard: "Escape"
+  - verify: live_region "0"
+
+  # ( 2 + 3 ) * 4 = 20 via the parenthesis keys.
+  - keyboard: "("
+  - keyboard: "2"
+  - keyboard: "+"
+  - keyboard: "3"
+  - keyboard: ")"
+  - verify: live_region "5"
+  - keyboard: "*"
+  - keyboard: "4"
+  - keyboard: "Enter"
+  - verify: live_region "20"
