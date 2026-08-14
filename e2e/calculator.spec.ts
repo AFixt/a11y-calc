@@ -400,8 +400,15 @@ test.describe('Calculator E2E', () => {
 
   test.describe('focus and interaction', () => {
     test('buttons are focusable via Tab', async ({ page }) => {
+      // Per ADR 0014, the role="application" container carries tabIndex={0}
+      // and is deliberately the first Tab stop, so its keyboard model works
+      // no matter where focus rests inside the widget.
       await page.keyboard.press('Tab');
       const focused = page.locator(':focus');
+      await expect(focused).toHaveRole('application');
+
+      // The next Tab moves focus into the widget's native buttons.
+      await page.keyboard.press('Tab');
       await expect(focused).toHaveRole('button');
     });
 
