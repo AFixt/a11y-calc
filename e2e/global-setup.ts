@@ -21,7 +21,7 @@ const EXPECTED_TITLE = 'Accessible Calculator';
  * issue #87.
  */
 async function globalSetup(config: FullConfig): Promise<void> {
-  const baseURL = config.projects[0].use.baseURL ?? 'http://localhost:4173';
+  const baseURL = config.projects[0]?.use.baseURL ?? 'http://localhost:4173';
 
   let html: string;
   try {
