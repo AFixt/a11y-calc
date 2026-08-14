@@ -39,3 +39,4 @@ sequentially starting at `0001`.
 - [ADR 0012 — Use TruffleHog instead of gitleaks for secret scanning](./0012-trufflehog-instead-of-gitleaks.md)
 - [ADR 0013 — Keep `CLAUDE.md` gitignored as local-only context](./0013-claude-md-local-only.md)
 - [ADR 0014 — Calculator keyboard focus surface and button-grid grouping](./0014-calculator-keyboard-focus-and-button-grouping.md)
+- [ADR 0016 — Resolve the `min-release-age` / `security:osv` deadlock with documented grace-period ignores](./0016-min-release-age-vs-osv-gate.md)
