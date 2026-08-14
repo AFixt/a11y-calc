@@ -1,0 +1,15 @@
+id: zzz-probe-broken
+title: "TEMPORARY probe: deliberately invalid use case to prove the gate fails"
+type: positive
+description: "This file uses an unknown step keyword (frobnicate) to confirm the
+  validate:usecases CI gate goes RED. It is reverted immediately after the probe."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The validation gate rejects this file"
+
+steps:
+  - frobnicate: button "7"
