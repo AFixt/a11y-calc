@@ -102,12 +102,36 @@ Mode and scientific functions:
 - `scientific-domain-error.uc.yaml` — error path; square root of a negative
   number surfaces `Error`
 
+### Scientific function families
+
+Coverage is **one representative member per function family**, not one use case
+per button. Every member of a family shares a single code path
+(`evaluateScientificFunction` in `src/utils/scientificCalculate.ts`) and a
+single conditional accessible-name computation in `ScientificPanel.tsx`, so
+exercising one member exercises the shared logic the others rely on:
+
+| Family             | Representative use case                           | Members covered by the same code path |
+| ------------------ | ------------------------------------------------- | ------------------------------------- |
+| Hyperbolic         | `scientific-hyperbolic.uc.yaml` (`cosh`)          | `sinh`, `tanh`                        |
+| Inverse hyperbolic | `scientific-inverse-hyperbolic.uc.yaml` (`acosh`) | `asinh`, `atanh`                      |
+| Inverse trig       | `scientific-inverse-trig.uc.yaml` (`asin`)        | `acos`, `atan`                        |
+
+Forward trig (`Sine`/`Cosine`/`Tangent`) is exercised only via the inverse set
+and the `2nd` toggle (`scientific-second-function.uc.yaml`), because those three
+accessible names collide under the runner's substring name matching — documented
+in `scientific-inverse-trig.uc.yaml`.
+
+So `sinh`, `tanh`, `asinh`, `atanh`, `acos`, and `atan` have no dedicated use
+case **by design**; adding one per button would duplicate an already-covered
+code path without adding assertion value.
+
 Accessibility-focused:
 
 - `announce-actions.uc.yaml` — screen-reader announcements (`sr_says`)
 - `audit-full-page.uc.yaml` — automated WCAG audit of the page (`audit: page`)
-- `every-button-is-reachable.uc.yaml` — every button: present in the a11y tree
-  and keyboard-focusable
+- `every-basic-button-is-reachable.uc.yaml` — every **basic-mode** button:
+  present in the a11y tree and keyboard-focusable. Scientific-mode buttons are
+  out of scope (see "Scientific function families" above).
 
 ### Optional peer dependencies
 
