@@ -2,9 +2,12 @@ name: Docs (link check)
 
 on:
   pull_request:
+    # Match the exact set lychee checks below (README.md + docs/**/*.md), so the
+    # job never triggers on a Markdown file whose links it does not actually
+    # check (which would pass vacuously). Keep these two lists in sync.
     paths:
-      - "**/*.md"
-      - "docs/**"
+      - "README.md"
+      - "docs/**/*.md"
   workflow_dispatch:
 
 concurrency:
