@@ -7,4 +7,4 @@
 [[IgnoredVulns]]
 id = "GHSA-jmr9-qjv8-65gv"
 ignoreUntil = 2027-02-13
-reason = "extract-zip 2.0.1 (devDependency, via @puppeteer/browsers <- puppeteer <- @afixt/a11y-assert): no fixed release exists upstream. Dev-only tooling; not shipped in the published package. Re-review by ignoreUntil, or remove this entry as soon as upstream ships a fix and the lockfile picks it up. Tracked in issue #78."
+reason = "extract-zip 2.0.1 (devDependency, via @puppeteer/browsers <- puppeteer <- @afixt/a11y-assert): no fixed release exists upstream. Dev-only tooling; not shipped in the published package. Re-review by ignoreUntil, or remove this entry as soon as upstream ships a fix and the lockfile picks it up. Tracked in issue #85."

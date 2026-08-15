@@ -40,3 +40,4 @@ sequentially starting at `0001`.
 - [ADR 0013 — Keep `CLAUDE.md` gitignored as local-only context](./0013-claude-md-local-only.md)
 - [ADR 0014 — Calculator keyboard focus surface and button-grid grouping](./0014-calculator-keyboard-focus-and-button-grouping.md)
 - [ADR 0015 — Remove scheduled GitHub Actions; run every check in PR-time CI](./0015-no-scheduled-actions.md)
+- [ADR 0016 — Resolve the `min-release-age` / `security:osv` deadlock with documented grace-period ignores](./0016-min-release-age-vs-osv-gate.md)
