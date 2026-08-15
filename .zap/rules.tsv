@@ -1,0 +1,18 @@
+# OWASP ZAP baseline rules for the a11y-calc demo.
+#
+# Format (tab-separated): <pluginId>	<WARN|FAIL|IGNORE>	<comment>
+# Used by .github/workflows/security.yml (zaproxy/action-baseline, fail_action: true).
+#
+# The demo is a static `vite preview` of a component-library showcase — it is
+# NOT the shipped product. The published artifact is a React component; HTTP
+# response headers (CSP, clickjacking, MIME-sniffing, permissions policy, COEP)
+# are the consuming application's responsibility, not this demo's. These alerts
+# are therefore expected here and are IGNORE'd so the baseline stays a real gate:
+# any NEW alert outside this list still surfaces as WARN and fails the job.
+10020	IGNORE	Missing Anti-clickjacking Header — demo server, not the shipped component
+10021	IGNORE	X-Content-Type-Options Header Missing — static demo server default
+10038	IGNORE	Content Security Policy (CSP) Header Not Set — consumer app concern
+10049	IGNORE	Storable but Non-Cacheable Content — vite preview cache headers
+10063	IGNORE	Permissions Policy Header Not Set — consumer app concern
+10109	IGNORE	Modern Web Application — informational; SPA is expected
+90004	IGNORE	Cross-Origin-Embedder-Policy Header Missing or Invalid — consumer app concern

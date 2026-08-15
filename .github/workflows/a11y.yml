@@ -56,8 +56,13 @@ jobs:
 
       - run: npm run build:demo
 
-      - name: Run a11y E2E
-        run: npx playwright test e2e/a11y.spec.ts --project=chromium
+      # Runs the full E2E suite — a11y.spec.ts (a11y-assert) AND calculator.spec.ts
+      # (arithmetic, keyboard, aria-pressed, announcements, scientific mode, focus
+      # order). calculator.spec.ts is the bulk of the suite and previously ran only
+      # locally, so it could drift out of sync with the app silently (#87, #80).
+      # Playwright attributes any failure to its spec file in the log and report.
+      - name: Run E2E suite (a11y + behavioural)
+        run: npx playwright test --project=chromium
 
       - name: Upload Playwright report on failure
         if: failure()
