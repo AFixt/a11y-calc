@@ -41,8 +41,15 @@ jobs:
       # runner v1.4.0, so 1.5.1 (19-keyword table) covers the whole suite. A
       # newer pin is always safe — the keyword set is append-only — but must
       # never drop below v1.4.0 or valid files fail as "unknown keyword".
+      #
+      # LIMITATION: --no-save means the runner's *transitive* deps are not
+      # lockfile-pinned and resolve fresh each run. To close that, a maintainer
+      # with @afixt registry access can promote it to a committed devDependency
+      # (`npm install --save-dev --save-exact @afixt/usecase-runner@1.5.1`, commit
+      # the lockfile) and delete this step — the validate:usecases script already
+      # assumes the bin is present.
       - name: Install usecase-runner (pinned)
-        run: npm install --no-save --save-exact @afixt/usecase-runner@1.5.1
+        run: npm install --no-save @afixt/usecase-runner@1.5.1
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
