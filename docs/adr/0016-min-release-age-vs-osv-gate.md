@@ -78,6 +78,12 @@ cooldown window) rather than pending an upstream fix.
   be seen and expire, not to accumulate silently.
 - `ignoreUntil` must be set to the cooldown expiry, never further out. An entry
   that outlives its cooldown hides a finding whose fix is already installable.
+- `ignoreUntil` is a bare date, whereas `min-release-age` is enforced from the
+  fix's exact publish _timestamp_, so the ignore can lapse a few hours before
+  the fix is truly installable — a brief spurious red. That is harmless: it is
+  the same failsafe as any other lapse (refresh the lockfile once the version is
+  installable and the entry is removed), so round `ignoreUntil` to the expiry
+  date and let the failsafe cover the sub-day gap rather than padding the date.
 - Grace-period entries are distinguishable from open-ended ones by their
   `reason` string (which names the `min-release-age` collision) and their
   near-term `ignoreUntil`.
