@@ -1,6 +1,7 @@
 # ADR 0007: GitHub Actions safety net and Dependabot
 
-- **Status:** Accepted
+- **Status:** Accepted; scheduled triggers and Dependabot superseded by
+  [ADR 0015](./0015-no-scheduled-actions.md)
 - **Date:** 2026-04-24
 - **Deciders:** Karl Groves
 

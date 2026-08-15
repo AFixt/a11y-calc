@@ -1,13 +1,21 @@
-name: Docs (scheduled link check)
+name: Docs (link check)
 
 on:
-  schedule:
-    - cron: "0 7 * * 1" # Monday 07:00 UTC
+  pull_request:
+    # Match the exact set lychee checks below (README.md + docs/**/*.md), so the
+    # job never triggers on a Markdown file whose links it does not actually
+    # check (which would pass vacuously). Keep these two lists in sync.
+    paths:
+      - "README.md"
+      - "docs/**/*.md"
   workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
-  issues: write # lychee can file a tracking issue on broken links
 
 jobs:
   links:
@@ -20,15 +28,5 @@ jobs:
       - name: lychee
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
-          args: --no-progress --max-retries 1 --timeout 15 "README.md" "docs/**/*.md"
+          args: --no-progress --max-retries 3 --timeout 30 "README.md" "docs/**/*.md"
           fail: true
-          format: markdown
-          output: /tmp/lychee-report.md
-
-      - name: Open or update broken-link issue
-        if: failure()
-        uses: peter-evans/create-issue-from-file@fca9117c27cdc29c6c4db3b86c48e4115a786710 # v6.0.0
-        with:
-          title: "Link Checker Report"
-          content-filepath: /tmp/lychee-report.md
-          labels: docs, automated
