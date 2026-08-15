@@ -10,10 +10,21 @@ preconditions:
 
 start_location: "http://localhost:4173"
 
-expected_result: "The page passes WCAG AA in both modes"
+expected_result: "The page has no WCAG AA violations in either mode, aside from one
+  known engine false positive (see NOTE below)"
 
 # NOTE: the audit verb requires the @afixt/afixt-engine peer dependency:
 #   npm install --save-dev @afixt/afixt-engine
+#
+# KNOWN FINDING (not a real defect): the audit scores "Pass w/ Conditions" on
+# FORMS-11 — WCAG 2.2 SC 2.5.3 Label in Name (Level A, priority Low) — against
+# the role="application" container. The engine concatenates every descendant's
+# text ("scientific 0 ac 7 8 9 …") and compares it to the container's accessible
+# name ("calculator"). This is a false positive: SC 2.5.3 targets controls whose
+# visible label text should appear in their accessible name, and the container is
+# not a labelled control — its "visible text" is just the concatenation of all
+# its children. Tracked in issue #88; to be raised upstream against the engine.
+# The two `audit: page` steps below are still load-bearing for every OTHER rule.
 
 steps:
   # Audit the page as first rendered (basic mode).
