@@ -194,7 +194,11 @@ npm ci
 The bootstrap script installs `trufflehog`, `lychee`, `semgrep`, `osv-scanner`,
 `codeql`, `dependency-check`, and `zap` via Homebrew on macOS (with Linux/WSL
 release-binary hints for the rest). First run of `dependency-check` seeds the
-NVD mirror (~1 GB, 20–40 min — faster with an NVD API key).
+NVD mirror (~1 GB, 20–40 min — faster with an NVD API key). To use a key,
+[request one from NVD](https://nvd.nist.gov/developers/request-an-api-key) and
+export it as `NVD_API_KEY` (e.g. in your shell profile);
+`npm run security:depcheck` picks it up automatically and updates drop from ~an
+hour to a couple of minutes.
 
 ### Scripts
 
@@ -233,9 +237,11 @@ npm run ai:context     # Print project summary (for AI sessions / new contribs)
 3. Husky's `pre-commit` runs `lint-staged` + type check on staged files
    - TruffleHog secret scan (see ADR 0012). `pre-push` runs the full
      `check:all`.
-4. Open a PR targeting `main`. CI runs `check:ci` and the a11y workflow.
-   Scheduled workflows (CodeQL, OWASP Dependency-Check, OWASP ZAP, lychee
-   online) run weekly on `main`.
+4. Open a PR targeting `main`. CI runs `check:ci`, the a11y and performance
+   workflows, the security workflow (OWASP ZAP baseline), and — when Markdown
+   changes — the lychee online link check. CodeQL and OWASP Dependency-Check run
+   locally on `pre-push` (`check:all`), not in CI (see ADR 0015 and ADR 0003).
+   There are no scheduled workflows (see ADR 0015).
 5. Non-obvious engineering decisions get an ADR in [`docs/adr/`](docs/adr/) —
    see [`docs/templates/adr-template.md`](docs/templates/adr-template.md).
 

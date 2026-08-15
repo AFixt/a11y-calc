@@ -49,6 +49,9 @@ export type CalculatorMode = 'basic' | 'scientific';
 /**
  * Snapshot of the arithmetic context captured when a parenthesis opens.
  * Restored when the matching parenthesis closes.
+ *
+ * @internal Reducer detail of `useCalculator`; not part of the public API and
+ * deliberately not re-exported from the package root (`src/index.ts`).
  */
 export interface ParenFrame {
   previousValue: string | null;
@@ -61,6 +64,9 @@ export interface ParenFrame {
  * Full calculator state. Every user interaction produces a new snapshot
  * by returning a replacement object from the reducer — the shape never
  * changes in place.
+ *
+ * @internal Reducer detail of `useCalculator`; not part of the public API and
+ * deliberately not re-exported from the package root (`src/index.ts`).
  */
 export interface CalculatorState {
   displayValue: string;

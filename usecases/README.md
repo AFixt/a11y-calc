@@ -76,6 +76,7 @@ Keyboard:
 
 - `keyboard-arithmetic.uc.yaml` — physical-keyboard digits/operators/Enter
 - `keyboard-clear-and-backspace.uc.yaml` — Backspace and Escape keys
+- `keyboard-scientific.uc.yaml` — `^`, `(` and `)` keys in scientific mode
 
 Mode and scientific functions:
 
@@ -91,13 +92,57 @@ Mode and scientific functions:
 - `scientific-inverse-trig.uc.yaml` — inverse trig in degrees (`asin(1) = 90`)
 - `scientific-angle-mode-toggle.uc.yaml` — radians/degrees toggle
 - `scientific-parentheses.uc.yaml` — grouping (`(2 + 3) x 4 = 20`)
+- `scientific-hyperbolic.uc.yaml` — hyperbolic cosine (`cosh(0) = 1`)
+- `scientific-inverse-hyperbolic.uc.yaml` — inverse hyperbolic cosine via 2nd
+  (`acosh(1) = 0`)
+- `scientific-logarithm-base10.uc.yaml` — log base 10 via 2nd (`log10(100) = 2`)
+- `scientific-cube.uc.yaml` — cube via 2nd (`2` becomes `8`)
+- `scientific-cube-root.uc.yaml` — cube root via 2nd (`27` becomes `3`)
+- `scientific-exponential.uc.yaml` — `eˣ` and `10ˣ` (`e⁰ = 1`, `10² = 100`)
+- `scientific-domain-error.uc.yaml` — error path; square root of a negative
+  number surfaces `Error`
+
+### Scientific function families
+
+Coverage is **one representative member per function family** in the use-case
+suite, not one use case per button. Members of a family share the same
+scaffolding — the deg/rad conversion, the domain-error and formatting paths, the
+`evaluateScientificFunction` dispatch (`src/utils/scientificCalculate.ts`), and
+the conditional accessible-name computation in `ScientificPanel.tsx` — so a use
+case for one member exercises the machinery the others depend on:
+
+| Family             | Representative use case                           | Family members sharing the scaffolding |
+| ------------------ | ------------------------------------------------- | -------------------------------------- |
+| Hyperbolic         | `scientific-hyperbolic.uc.yaml` (`cosh`)          | `sinh`, `tanh`                         |
+| Inverse hyperbolic | `scientific-inverse-hyperbolic.uc.yaml` (`acosh`) | `asinh`, `atanh`                       |
+| Inverse trig       | `scientific-inverse-trig.uc.yaml` (`asin`)        | `acos`, `atan`                         |
+
+Each member does still have its own dispatch entry and its own accessible-name
+branch, so a representative use case does **not** execute a sibling's exact
+label or math. Those per-member label/math branches are pinned by the unit suite
+(`src/__tests__/scientificCalculate.test.ts` and
+`src/__tests__/Calculator.test.tsx`), which is where a per-button label or math
+regression is caught — the use-case suite deliberately covers one representative
+per family rather than duplicating that.
+
+The forward-trig **buttons** (`Sine`/`Cosine`/`Tangent`) appear in use cases
+only via the inverse set and the `2nd` toggle
+(`scientific-second-function.uc.yaml`), not via a forward-trig computation,
+because those three accessible names collide under the runner's substring name
+matching — documented in `scientific-inverse-trig.uc.yaml`.
+
+So `sinh`, `tanh`, `asinh`, `atanh`, `acos`, and `atan` have no dedicated use
+case **by design**: a per-button use case would re-cover the shared scaffolding
+the representative already exercises, while the member-specific label and math
+are already covered by the unit suite.
 
 Accessibility-focused:
 
 - `announce-actions.uc.yaml` — screen-reader announcements (`sr_says`)
 - `audit-full-page.uc.yaml` — automated WCAG audit of the page (`audit: page`)
-- `every-button-is-reachable.uc.yaml` — every button: present in the a11y tree
-  and keyboard-focusable
+- `every-basic-button-is-reachable.uc.yaml` — every **basic-mode** button:
+  present in the a11y tree and keyboard-focusable. Scientific-mode buttons are
+  out of scope (see "Scientific function families" above).
 
 ### Optional peer dependencies
 

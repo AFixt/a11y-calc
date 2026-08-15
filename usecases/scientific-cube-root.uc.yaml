@@ -1,0 +1,36 @@
+id: scientific-cube-root
+title: "Scientific mode — cube root via 2nd"
+type: positive
+description: "Switch to scientific mode, enter 27, enable the 2nd function set (which
+  swaps √x for ∛x), and press Cube root. The cube root of 27 is 3.
+  Complements scientific-square-root, which covers the primary √x function."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 3"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "2"
+  - focus: button "2"
+  - activate: button "2"
+
+  - locate: button "7"
+  - focus: button "7"
+  - activate: button "7"
+  - verify: live_region "27"
+
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  - locate: button "Cube root"
+  - focus: button "Cube root"
+  - activate: button "Cube root"
+  - verify: live_region "3"

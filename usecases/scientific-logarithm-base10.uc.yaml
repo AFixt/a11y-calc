@@ -1,0 +1,37 @@
+id: scientific-logarithm-base10
+title: "Scientific mode — log base 10 via 2nd"
+type: positive
+description: "Switch to scientific mode, enter 100, enable the 2nd function set (which
+  swaps ln for log base 10), and press Log base 10. log10(100) is 2.
+  Complements scientific-logarithm, which covers the primary ln function."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 2"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "1"
+  - focus: button "1"
+  - activate: button "1"
+
+  - locate: button "0"
+  - focus: button "0"
+  - activate: button "0"
+  - activate: button "0"
+  - verify: live_region "100"
+
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  - locate: button "Log base 10"
+  - focus: button "Log base 10"
+  - activate: button "Log base 10"
+  - verify: live_region "2"

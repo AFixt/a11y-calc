@@ -1,0 +1,33 @@
+id: scientific-domain-error
+title: "Scientific mode — square root of a negative number (error state)"
+type: negative
+description: "Switch to scientific mode, enter 4, negate it, and press Square root.
+  The square root of a negative number is a domain error: the calculator must
+  surface Error in the display rather than NaN or a number. Companion to
+  divide-by-zero, which covers the basic-mode error path."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows Error"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  - locate: button "4"
+  - focus: button "4"
+  - activate: button "4"
+
+  - locate: button "Toggle positive negative"
+  - focus: button "Toggle positive negative"
+  - activate: button "Toggle positive negative"
+  - verify: live_region "-4"
+
+  - locate: button "Square root"
+  - focus: button "Square root"
+  - activate: button "Square root"
+  - verify: live_region "Error"

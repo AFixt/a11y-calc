@@ -1,0 +1,42 @@
+id: scientific-exponential
+title: "Scientific mode — eˣ and 10ˣ exponential functions"
+type: positive
+description: "The exponential button exposes eˣ as its primary function and 10ˣ under 2nd.
+  e⁰ is 1; after clearing, 10² is 100. Covers both functions of the shared
+  button, including the 2nd-function swap."
+
+preconditions:
+  - "Calculator is loaded in basic mode showing 0"
+
+start_location: "http://localhost:4173"
+
+expected_result: "The display shows 1 for e⁰, then 100 for 10²"
+
+steps:
+  - locate: button "Scientific"
+  - focus: button "Scientific"
+  - activate: button "Scientific"
+
+  # e to the power of 0 is 1.
+  - locate: button "e to the power of x"
+  - focus: button "e to the power of x"
+  - activate: button "e to the power of x"
+  - verify: live_region "1"
+
+  - locate: button "All clear"
+  - focus: button "All clear"
+  - activate: button "All clear"
+
+  # 10 to the power of 2 is 100.
+  - locate: button "2"
+  - focus: button "2"
+  - activate: button "2"
+
+  - locate: button "Second function"
+  - focus: button "Second function"
+  - activate: button "Second function"
+
+  - locate: button "10 to the power of x"
+  - focus: button "10 to the power of x"
+  - activate: button "10 to the power of x"
+  - verify: live_region "100"
