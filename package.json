@@ -62,6 +62,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "npm run build:demo && playwright test",
+    "validate:usecases": "usecase-runner validate ./usecases --config ./usecases/usecase-runner.config.yaml",
     "test:zap": "echo 'Run: zap-baseline.py -t http://localhost:4173 after starting npm run preview'; exit 1",
     "size": "size-limit",
     "ai:context": "node scripts/ai-context.js",

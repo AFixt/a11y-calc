@@ -1,0 +1,57 @@
+name: Use cases
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: usecases-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate .uc.yaml suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          registry-url: "https://registry.npmjs.org"
+          scope: "@afixt"
+
+      - name: Install npm dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # @afixt/usecase-runner is under the private @afixt scope and is not a
+      # committed devDependency (the runner is a validation tool, not part of the
+      # published package or its test build). Install it here, pinned, with the
+      # org NPM_TOKEN. Pin rationale: the suite uses the step keywords
+      # locate/focus/activate/verify/keyboard/audit/sr_says; sr_says landed in
+      # runner v1.4.0, so 1.5.1 (19-keyword table) covers the whole suite. A
+      # newer pin is always safe — the keyword set is append-only — but must
+      # never drop below v1.4.0 or valid files fail as "unknown keyword".
+      #
+      # LIMITATION: --no-save means the runner's *transitive* deps are not
+      # lockfile-pinned and resolve fresh each run. To close that, a maintainer
+      # with @afixt registry access can promote it to a committed devDependency
+      # (`npm install --save-dev --save-exact @afixt/usecase-runner@1.5.1`, commit
+      # the lockfile) and delete this step — the validate:usecases script already
+      # assumes the bin is present.
+      - name: Install usecase-runner (pinned)
+        run: npm install --no-save @afixt/usecase-runner@1.5.1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Validate use cases
+        run: npm run validate:usecases
