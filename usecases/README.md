@@ -104,26 +104,37 @@ Mode and scientific functions:
 
 ### Scientific function families
 
-Coverage is **one representative member per function family**, not one use case
-per button. Every member of a family shares a single code path
-(`evaluateScientificFunction` in `src/utils/scientificCalculate.ts`) and a
-single conditional accessible-name computation in `ScientificPanel.tsx`, so
-exercising one member exercises the shared logic the others rely on:
+Coverage is **one representative member per function family** in the use-case
+suite, not one use case per button. Members of a family share the same
+scaffolding — the deg/rad conversion, the domain-error and formatting paths, the
+`evaluateScientificFunction` dispatch (`src/utils/scientificCalculate.ts`), and
+the conditional accessible-name computation in `ScientificPanel.tsx` — so a use
+case for one member exercises the machinery the others depend on:
 
-| Family             | Representative use case                           | Members covered by the same code path |
-| ------------------ | ------------------------------------------------- | ------------------------------------- |
-| Hyperbolic         | `scientific-hyperbolic.uc.yaml` (`cosh`)          | `sinh`, `tanh`                        |
-| Inverse hyperbolic | `scientific-inverse-hyperbolic.uc.yaml` (`acosh`) | `asinh`, `atanh`                      |
-| Inverse trig       | `scientific-inverse-trig.uc.yaml` (`asin`)        | `acos`, `atan`                        |
+| Family             | Representative use case                           | Family members sharing the scaffolding |
+| ------------------ | ------------------------------------------------- | -------------------------------------- |
+| Hyperbolic         | `scientific-hyperbolic.uc.yaml` (`cosh`)          | `sinh`, `tanh`                         |
+| Inverse hyperbolic | `scientific-inverse-hyperbolic.uc.yaml` (`acosh`) | `asinh`, `atanh`                       |
+| Inverse trig       | `scientific-inverse-trig.uc.yaml` (`asin`)        | `acos`, `atan`                         |
 
-Forward trig (`Sine`/`Cosine`/`Tangent`) is exercised only via the inverse set
-and the `2nd` toggle (`scientific-second-function.uc.yaml`), because those three
-accessible names collide under the runner's substring name matching — documented
-in `scientific-inverse-trig.uc.yaml`.
+Each member does still have its own dispatch entry and its own accessible-name
+branch, so a representative use case does **not** execute a sibling's exact
+label or math. Those per-member label/math branches are pinned by the unit suite
+(`src/__tests__/scientificCalculate.test.ts` and
+`src/__tests__/Calculator.test.tsx`), which is where a per-button label or math
+regression is caught — the use-case suite deliberately covers one representative
+per family rather than duplicating that.
+
+The forward-trig **buttons** (`Sine`/`Cosine`/`Tangent`) appear in use cases
+only via the inverse set and the `2nd` toggle
+(`scientific-second-function.uc.yaml`), not via a forward-trig computation,
+because those three accessible names collide under the runner's substring name
+matching — documented in `scientific-inverse-trig.uc.yaml`.
 
 So `sinh`, `tanh`, `asinh`, `atanh`, `acos`, and `atan` have no dedicated use
-case **by design**; adding one per button would duplicate an already-covered
-code path without adding assertion value.
+case **by design**: a per-button use case would re-cover the shared scaffolding
+the representative already exercises, while the member-specific label and math
+are already covered by the unit suite.
 
 Accessibility-focused:
 
