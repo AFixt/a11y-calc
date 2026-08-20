@@ -1,6 +1,6 @@
 {
   "name": "@afixt/a11y-calc",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publishConfig": {
     "access": "public"
   },
@@ -39,6 +39,7 @@
   "files": [
     "dist",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "sideEffects": [
@@ -96,7 +97,8 @@
     "tmp": ">=0.2.6",
     "markdown-it": "^14.2.0",
     "undici": "^7.28.0",
-    "js-yaml": "^4.3.0"
+    "js-yaml": "^4.3.0",
+    "puppeteer": "25.6.0"
   },
   "devDependencies": {
     "@afixt/a11y-assert": "2.1.3",
