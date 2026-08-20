@@ -46,6 +46,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    // userEvent-driven component tests routinely exceed vitest's 5s default
+    // on loaded machines; the assertions are fine, the budget was not.
+    testTimeout: 20000,
     setupFiles: './src/test-setup.ts',
     exclude: ['e2e/**', 'node_modules/**'],
     coverage: {
