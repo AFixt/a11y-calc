@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-08-20
+
+### Added
+
+- `CHANGELOG.md` documenting the release history from v0.1.1 onward, in
+  Keep a Changelog format, shipped in the published package. (#107)
+
 ### Security
 
 - Override `puppeteer` to 25.6.0 to clear the unfixable `extract-zip` advisory
@@ -121,7 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `release.yml` for OIDC-based npm publish with provenance (#11).
 - Tooling baseline: ESLint, Husky gates, size-limit, and CI workflows.
 
-[Unreleased]: https://github.com/AFixt/a11y-calc/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/AFixt/a11y-calc/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/AFixt/a11y-calc/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/AFixt/a11y-calc/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/AFixt/a11y-calc/compare/v0.1.5...v0.2.0
 [0.1.5]: https://github.com/AFixt/a11y-calc/compare/v0.1.4...v0.1.5
